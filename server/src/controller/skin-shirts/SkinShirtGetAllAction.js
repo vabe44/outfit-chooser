@@ -15,10 +15,20 @@ const SkinShirt_1 = require("../../entity/SkinShirt");
  */
 function skinShirtGetAllAction(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
+        let skinShirts = [];
+        const skinColor = request.query.skinColor;
+        const shirtColor = request.query.shirtColor;
         // get a post repository to perform operations with post
         const skinShirtRepository = typeorm_1.getManager().getRepository(SkinShirt_1.SkinShirt);
-        // load a post by a given post id
-        const skinShirts = yield skinShirtRepository.find();
+        if (skinColor) {
+            skinShirts = yield skinShirtRepository.find({ skin_tone_id: skinColor });
+        }
+        else if (shirtColor) {
+            skinShirts = yield skinShirtRepository.find({ shirt_color_id: shirtColor });
+        }
+        else {
+            skinShirts = yield skinShirtRepository.find();
+        }
         // return loaded posts
         response.send(skinShirts);
     });

@@ -55,6 +55,7 @@ export const AppRoutes = [
         method: "get",
         action: shoeColorGetAllAction
     },
+
     {
         path: "/skin-shirts",
         method: "get",
