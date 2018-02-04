@@ -24,12 +24,16 @@ __decorate([
     __metadata("design:type", Number)
 ], ShirtPants.prototype, "id", void 0);
 __decorate([
-    typeorm_1.ManyToOne(type => ShirtColor_1.ShirtColor, shirt_color_id => shirt_color_id.shirt_pants),
+    typeorm_1.ManyToOne(type => ShirtColor_1.ShirtColor, shirt_color_id => shirt_color_id.shirt_pants, {
+        eager: true
+    }),
     typeorm_1.JoinColumn({ name: 'shirt_color_id' }),
     __metadata("design:type", ShirtColor_1.ShirtColor)
 ], ShirtPants.prototype, "shirt_color_id", void 0);
 __decorate([
-    typeorm_1.ManyToOne(type => PantsColor_1.PantsColor, pant_color_id => pant_color_id.shirt_pants),
+    typeorm_1.ManyToOne(type => PantsColor_1.PantsColor, pant_color_id => pant_color_id.shirt_pants, {
+        eager: true
+    }),
     typeorm_1.JoinColumn({ name: 'pant_color_id' }),
     __metadata("design:type", PantsColor_1.PantsColor)
 ], ShirtPants.prototype, "pant_color_id", void 0);

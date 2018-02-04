@@ -16,11 +16,15 @@ export class PantsShoes {
         })
     id:number;
 
-    @ManyToOne(type=>PantsColor, pant_color_id=>pant_color_id.pant_shoes)
+    @ManyToOne(type=>PantsColor, pant_color_id=>pant_color_id.pant_shoes, {
+        eager: true
+    })
     @JoinColumn({ name:'pant_color_id'})
     pant_color_id:PantsColor;
 
-    @ManyToOne(type=>ShoeColor, shoe_color_id=>shoe_color_id.pant_shoes)
+    @ManyToOne(type=>ShoeColor, shoe_color_id=>shoe_color_id.pant_shoes, {
+        eager: true
+    })
     @JoinColumn({ name:'shoe_color_id'})
     shoe_color_id:ShoeColor;
 

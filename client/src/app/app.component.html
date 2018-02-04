@@ -6,16 +6,18 @@
 </div>
 
 <div class="mannequin">
-  <div class="shirt">shirt</div>
-  <div class="pants">pants</div>
-  <div class="shoes">shoes</div>
+  <div class="skin">skin tone: {{ selectedSkinTone ? skinTones[selectedSkinTone - 1].tone : 'not selected' }}</div>
+  <div class="shirt">shirt: {{ selectedShirtColor ? shirtColors[selectedShirtColor - 1].color : 'not selected' }}</div>
+  <div class="pants">pants: {{ selectedPantsColor ? pantsColors[selectedPantsColor - 1].color : 'not selected' }}</div>
+  <div class="shoes">shoes: {{ selectedShoeColor ? shoeColors[selectedShoeColor - 1].color : 'not selected' }}</div>
 </div>
 
 <div class="settings">
   <div class="skinTones">
     Skin tones:
     <ul>
-      <li *ngFor="let skinTone of skinTones">
+      <li (click)="resetSkinTone()">Reset</li>
+      <li *ngFor="let skinTone of skinTones" [class.selected]="selectedSkinTone == skinTone.id" (click)="selectSkinTone(skinTone.id)">
         {{ skinTone.tone }}
       </li>
     </ul>
@@ -24,7 +26,8 @@
   <div class="shirtColors">
     Shirt colors:
     <ul>
-      <li *ngFor="let shirtColor of shirtColors">
+      <li (click)="resetShirtColor()">Reset</li>
+      <li *ngFor="let shirtColor of filteredShirtColors" [class.selected]="selectedShirtColor == shirtColor.id" (click)="selectShirtColor(shirtColor.id)">
         {{ shirtColor.color }}
       </li>
     </ul>
@@ -33,7 +36,8 @@
   <div class="pantsColors">
     Pants colors:
     <ul>
-      <li *ngFor="let pantsColor of pantsColors">
+      <li (click)="resetPantsColor()">Reset</li>
+      <li *ngFor="let pantsColor of filteredPantsColors" [class.selected]="selectedPantsColor == pantsColor.id" (click)="selectPantsColor(pantsColor.id)">
         {{ pantsColor.color }}
       </li>
     </ul>
@@ -42,7 +46,8 @@
   <div class="shoeColors">
     Shoe colors:
     <ul>
-      <li *ngFor="let shoeColor of shoeColors">
+      <li (click)="resetShoeColor()">Reset</li>
+      <li *ngFor="let shoeColor of filteredShoeColors" [class.selected]="selectedShoeColor == shoeColor.id" (click)="selectShoeColor(shoeColor.id)">
         {{ shoeColor.color }}
       </li>
     </ul>
