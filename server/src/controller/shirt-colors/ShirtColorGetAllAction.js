@@ -8,14 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const path = require("path");
+const typeorm_1 = require("typeorm");
+const ShirtColor_1 = require("../../entity/ShirtColor");
 /**
- * Displays home page
+ * Loads all posts from the database.
  */
-function homeController(request, response) {
+function shirtColorGetAllAction(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
-        response.sendFile(path.join(__dirname, '../../../../client/src/index.html'));
+        // get a post repository to perform operations with post
+        const shirtColorRepository = typeorm_1.getManager().getRepository(ShirtColor_1.ShirtColor);
+        // load a post by a given post id
+        const shirtColors = yield shirtColorRepository.find();
+        // return loaded posts
+        response.send(shirtColors);
     });
 }
-exports.homeController = homeController;
-//# sourceMappingURL=homeController.js.map
+exports.shirtColorGetAllAction = shirtColorGetAllAction;
+//# sourceMappingURL=ShirtColorGetAllAction.js.map

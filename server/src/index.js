@@ -13,6 +13,7 @@ const typeorm_1 = require("typeorm");
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const cors = require("cors");
 const routes_1 = require("./routes");
 // create connection with database
 // note that it's not active database connection
@@ -21,7 +22,13 @@ typeorm_1.createConnection().then((connection) => __awaiter(this, void 0, void 0
     // create express app
     const app = express();
     app.use(bodyParser.json());
-    app.use(express.static(path.join(__dirname, '../../client/dist')));
+    app.use(express.static(path.join(__dirname, '../../client/src')));
+    const corsOptions = {
+        origin: 'http://localhost:4200',
+        credentials: true,
+    };
+    //here is the magic
+    app.use(cors(corsOptions));
     // register all application routes
     routes_1.AppRoutes.forEach(route => {
         app[route.method](route.path, (request, response, next) => {

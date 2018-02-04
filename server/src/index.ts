@@ -4,6 +4,7 @@ import {Request, Response} from "express";
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as path from 'path';
+import * as cors from "cors";
 import {AppRoutes} from "./routes";
 
 // create connection with database
@@ -14,7 +15,14 @@ createConnection().then(async connection => {
     // create express app
     const app = express();
     app.use(bodyParser.json());
-    app.use(express.static(path.join(__dirname, '../../client/dist')))
+    app.use(express.static(path.join(__dirname, '../../client/src')));
+
+    const corsOptions = {
+        origin: 'http://localhost:4200',
+        credentials: true,
+    }
+    //here is the magic
+    app.use(cors(corsOptions));
 
     // register all application routes
     AppRoutes.forEach(route => {

@@ -8,14 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const path = require("path");
+const typeorm_1 = require("typeorm");
+const PantsColor_1 = require("../../entity/PantsColor");
 /**
- * Displays home page
+ * Loads all posts from the database.
  */
-function homeController(request, response) {
+function pantsColorGetAllAction(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
-        response.sendFile(path.join(__dirname, '../../../../client/src/index.html'));
+        // get a post repository to perform operations with post
+        const PantsColorRepository = typeorm_1.getManager().getRepository(PantsColor_1.PantsColor);
+        // load a post by a given post id
+        const pantsColors = yield PantsColorRepository.find();
+        // return loaded posts
+        response.send(pantsColors);
     });
 }
-exports.homeController = homeController;
-//# sourceMappingURL=homeController.js.map
+exports.pantsColorGetAllAction = pantsColorGetAllAction;
+//# sourceMappingURL=PantsColorGetAllAction.js.map

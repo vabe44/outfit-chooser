@@ -1,0 +1,10 @@
+.mannequin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.settings {
+    display: flex;
+    /* justify-content: space-around; */
+}

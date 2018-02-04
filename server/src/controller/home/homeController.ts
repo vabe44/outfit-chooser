@@ -6,6 +6,6 @@ import * as path from 'path';
  */
 export async function homeController(request: Request, response: Response) {
 
-    response.sendFile(path.join(__dirname, '../../../../client/dist/index.html'));
+    response.sendFile(path.join(__dirname, '../../../../client/src/index.html'));
 
 }
