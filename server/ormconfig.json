@@ -7,7 +7,7 @@
     "username": "root",
     "password": "",
     "database": "outfit_chooser",
-    "synchronize": false,
+    "synchronize": true,
     "entities": [
       "src/entity/*.js"
     ]

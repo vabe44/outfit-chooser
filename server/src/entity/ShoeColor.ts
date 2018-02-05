@@ -21,6 +21,13 @@ export class ShoeColor {
         })
     color:string;
 
+    @Column("varchar",{
+        nullable:false,
+        length:45,
+        name:"colorcode"
+        })
+    colorcode:string;
+
     @OneToMany(type=>PantsShoes, pant_shoes=>pant_shoes.shoe_color_id)
     pant_shoes:PantsShoes[];
 

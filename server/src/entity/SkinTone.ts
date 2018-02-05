@@ -20,6 +20,13 @@ export class SkinTone {
         })
     tone:string;
 
+    @Column("varchar",{
+        nullable:false,
+        length:45,
+        name:"colorcode"
+        })
+    colorcode:string;
+
     @OneToMany(type=>SkinShirt, skin_shirts=>skin_shirts.skin_tone_id)
     skin_shirts:SkinShirt[];
 

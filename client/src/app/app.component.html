@@ -6,10 +6,30 @@
 </div>
 
 <div class="mannequin">
-  <div class="skin">skin tone: {{ selectedSkinTone ? skinTones[selectedSkinTone - 1].tone : 'not selected' }}</div>
-  <div class="shirt">shirt: {{ selectedShirtColor ? shirtColors[selectedShirtColor - 1].color : 'not selected' }}</div>
-  <div class="pants">pants: {{ selectedPantsColor ? pantsColors[selectedPantsColor - 1].color : 'not selected' }}</div>
-  <div class="shoes">shoes: {{ selectedShoeColor ? shoeColors[selectedShoeColor - 1].color : 'not selected' }}</div>
+  <div class="container">
+    <!-- <div class="head">&nbsp;</div> -->
+    <div class="shirt-container">
+      <div class="left"><</div>
+      <div class="shirt" [style.background-color]="selectedShirtColor.colorcode">&nbsp;</div>
+      <div class="right">></div>
+    </div>
+    <div class="pants-container">
+      <div class="left"><</div>
+      <div class="pants">
+        <div class="leg" [style.background-color]="selectedPantsColor.colorcode">&nbsp;</div>
+        <div class="leg" [style.background-color]="selectedPantsColor.colorcode">&nbsp;</div>
+      </div>
+      <div class="right">></div>
+    </div>
+    <div class="shoes-container">
+      <div class="left"><</div>
+      <div class="shoes">
+        <div class="shoe" [style.background-color]="selectedShoeColor.colorcode">&nbsp;</div>
+        <div class="shoe" [style.background-color]="selectedShoeColor.colorcode">&nbsp;</div>
+      </div>
+      <div class="right">></div>
+    </div>
+  </div>
 </div>
 
 <div class="settings">
@@ -17,7 +37,7 @@
     Skin tones:
     <ul>
       <li (click)="resetSkinTone()">Reset</li>
-      <li *ngFor="let skinTone of skinTones" [class.selected]="selectedSkinTone == skinTone.id" (click)="selectSkinTone(skinTone.id)">
+      <li *ngFor="let skinTone of skinTones" [class.selected]="selectedSkinTone.id == skinTone.id" (click)="selectSkinTone(skinTone)">
         {{ skinTone.tone }}
       </li>
     </ul>
@@ -27,7 +47,7 @@
     Shirt colors:
     <ul>
       <li (click)="resetShirtColor()">Reset</li>
-      <li *ngFor="let shirtColor of filteredShirtColors" [class.selected]="selectedShirtColor == shirtColor.id" (click)="selectShirtColor(shirtColor.id)">
+      <li *ngFor="let shirtColor of filteredShirtColors" [class.selected]="selectedShirtColor.id == shirtColor.id" (click)="selectShirtColor(shirtColor)">
         {{ shirtColor.color }}
       </li>
     </ul>
@@ -37,7 +57,7 @@
     Pants colors:
     <ul>
       <li (click)="resetPantsColor()">Reset</li>
-      <li *ngFor="let pantsColor of filteredPantsColors" [class.selected]="selectedPantsColor == pantsColor.id" (click)="selectPantsColor(pantsColor.id)">
+      <li *ngFor="let pantsColor of filteredPantsColors" [class.selected]="selectedPantsColor.id == pantsColor.id" (click)="selectPantsColor(pantsColor)">
         {{ pantsColor.color }}
       </li>
     </ul>
@@ -47,10 +67,16 @@
     Shoe colors:
     <ul>
       <li (click)="resetShoeColor()">Reset</li>
-      <li *ngFor="let shoeColor of filteredShoeColors" [class.selected]="selectedShoeColor == shoeColor.id" (click)="selectShoeColor(shoeColor.id)">
+      <li *ngFor="let shoeColor of filteredShoeColors" [class.selected]="selectedShoeColor.id == shoeColor.id" (click)="selectShoeColor(shoeColor)">
         {{ shoeColor.color }}
       </li>
     </ul>
   </div>
 </div>
 
+<div class="debug">
+    <div>skin tone: {{ selectedSkinTone ? selectedSkinTone.tone : 'not selected' }}</div>
+    <div>shirt: {{ selectedShirtColor ? selectedShirtColor.color : 'not selected' }}</div>
+    <div>pants: {{ selectedPantsColor ? selectedPantsColor.color : 'not selected' }}</div>
+    <div>shoes: {{ selectedShoeColor ? selectedShoeColor.color : 'not selected' }}</div>
+  </div>

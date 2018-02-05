@@ -31,6 +31,14 @@ __decorate([
     __metadata("design:type", String)
 ], ShirtColor.prototype, "color", void 0);
 __decorate([
+    typeorm_1.Column("varchar", {
+        nullable: false,
+        length: 45,
+        name: "colorcode"
+    }),
+    __metadata("design:type", String)
+], ShirtColor.prototype, "colorcode", void 0);
+__decorate([
     typeorm_1.OneToMany(type => ShirtPants_1.ShirtPants, shirt_pants => shirt_pants.shirt_color_id),
     __metadata("design:type", Array)
 ], ShirtColor.prototype, "shirt_pants", void 0);

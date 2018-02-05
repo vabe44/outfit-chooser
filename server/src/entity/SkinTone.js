@@ -30,6 +30,14 @@ __decorate([
     __metadata("design:type", String)
 ], SkinTone.prototype, "tone", void 0);
 __decorate([
+    typeorm_1.Column("varchar", {
+        nullable: false,
+        length: 45,
+        name: "colorcode"
+    }),
+    __metadata("design:type", String)
+], SkinTone.prototype, "colorcode", void 0);
+__decorate([
     typeorm_1.OneToMany(type => SkinShirt_1.SkinShirt, skin_shirts => skin_shirts.skin_tone_id),
     __metadata("design:type", Array)
 ], SkinTone.prototype, "skin_shirts", void 0);

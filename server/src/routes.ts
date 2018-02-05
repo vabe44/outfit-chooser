@@ -1,6 +1,3 @@
-import {postGetAllAction} from "./controller/posts/PostGetAllAction";
-import {postGetByIdAction} from "./controller/posts/PostGetByIdAction";
-import {postSaveAction} from "./controller/posts/PostSaveAction";
 import {homeController} from "./controller/home/homeController";
 
 import {skinToneGetAllAction} from "./controller/skin-tones/SkinToneGetAllAction";
@@ -21,21 +18,6 @@ export const AppRoutes = [
         path: "/index",
         method: "get",
         action: homeController
-    },
-    {
-        path: "/posts",
-        method: "get",
-        action: postGetAllAction
-    },
-    {
-        path: "/posts/:id",
-        method: "get",
-        action: postGetByIdAction
-    },
-    {
-        path: "/posts",
-        method: "post",
-        action: postSaveAction
     },
 
     {
