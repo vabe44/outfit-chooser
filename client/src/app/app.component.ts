@@ -11,6 +11,7 @@ import { ClothesService } from './services/clothes.service';
 })
 export class AppComponent implements OnInit {
   title = 'Outfit Chooser';
+
   skinTones: any[] = [];
   shirtColors: any[] = [];
   pantsColors: any[] = [];
@@ -19,10 +20,14 @@ export class AppComponent implements OnInit {
   shirtPants: any[] = [];
   pantsShoes: any[] = [];
 
-  selectedSkinTone: any = {};
-  selectedShirtColor: any = {};
-  selectedPantsColor: any = {};
-  selectedShoeColor: any = {};
+  currentStep: number;
+  currentTask: string;
+  currentlyChoosing: string;
+
+  selectedSkinTone: any = false;
+  selectedShirtColor: any = false;
+  selectedPantsColor: any = false;
+  selectedShoeColor: any = false;
 
   filteredSkinTones: any[] = [];
   filteredShirtColors: any[] = [];
@@ -47,6 +52,68 @@ export class AppComponent implements OnInit {
       this.filteredPantsColors = Array.from(response[2]);
       this.filteredShoeColors = Array.from(response[3]);
     });
+
+    this.currentStep = 1;
+    this.currentTask = 'Select one of the clothes to start:';
+    this.currentlyChoosing = 'none';
+  }
+
+  checkIfSelected(currentlyChoosing) {
+
+      if (currentlyChoosing === 'shirt' && !this.selectedShirtColor) {
+        this.setCurrentlyChoosing(currentlyChoosing);
+      }
+
+      if (currentlyChoosing === 'pants' && !this.selectedPantsColor) {
+        this.setCurrentlyChoosing(currentlyChoosing);
+      }
+
+      if (currentlyChoosing === 'shoes' && !this.selectedShoeColor) {
+        this.setCurrentlyChoosing(currentlyChoosing);
+      }
+  }
+
+  setCurrentlyChoosing(currentlyChoosing) {
+    this.currentTask = `Select the color of your ${currentlyChoosing}:`;
+    // nothing selected yet!
+    if (!this.selectedShirtColor && !this.selectedPantsColor && !this.selectedPantsColor) {
+      // 0
+      console.log(0);
+      this.currentlyChoosing = currentlyChoosing;
+      this.currentStep = 2;
+    } else if ( currentlyChoosing === 'shirt' && (this.selectedPantsColor || this.selectedShoeColor) )  {
+      // 1
+      console.log(1);
+      this.currentlyChoosing = 'shirt';
+      this.currentStep = 3;
+    } else if ( currentlyChoosing === 'pants' && (this.selectedShirtColor || this.selectedShoeColor) )  {
+      // 2
+      console.log(2);
+      this.currentlyChoosing = 'pants';
+      this.currentStep = 3;
+    } else if ( currentlyChoosing === 'shoes' && (this.selectedShirtColor || this.selectedPantsColor) )  {
+      // 3
+      console.log(3);
+      this.currentlyChoosing = 'shoes';
+      this.currentStep = 3;
+    } else if ( currentlyChoosing === 'shirt' && (this.selectedPantsColor && this.selectedShoeColor) )  {
+      // 4
+      console.log(4);
+      this.currentlyChoosing = 'shirt';
+      this.currentStep = 4;
+    } else if ( currentlyChoosing === 'pants' && (this.selectedShirtColor && this.selectedShoeColor) )  {
+      // 5
+      console.log(5);
+      this.currentlyChoosing = 'pants';
+      this.currentStep = 4;
+    } else if ( currentlyChoosing === 'shoes' && (this.selectedShirtColor && this.selectedPantsColor) )  {
+      // 6
+      console.log(6);
+      this.currentlyChoosing = 'shoes';
+      this.currentStep = 4;
+    } else {
+      console.log('errorrrrrrrrrrrrrrrr');
+    }
   }
 
   selectSkinTone(skinTone) {
@@ -92,7 +159,7 @@ export class AppComponent implements OnInit {
       });
 
       if (!selectedShirtMatches) {
-        this.selectedShirtColor = undefined;
+        this.selectedShirtColor = false;
       }
 
       // filter shirt colors
@@ -120,7 +187,7 @@ export class AppComponent implements OnInit {
   }
 
   resetSkinTone() {
-    this.selectedSkinTone = {};
+    this.selectedSkinTone = false;
     this.filteredSkinTones = Array.from(this.skinTones);
     this.filteredShirtColors = Array.from(this.shirtColors);
     this.resetShirtColor();
@@ -129,7 +196,7 @@ export class AppComponent implements OnInit {
   }
 
   resetShirtColor() {
-    this.selectedShirtColor = {};
+    this.selectedShirtColor = false;
     this.filteredShirtColors = Array.from(this.shirtColors);
     this.filteredPantsColors = Array.from(this.pantsColors);
     this.resetPantsColor();
@@ -138,7 +205,7 @@ export class AppComponent implements OnInit {
   }
 
   resetPantsColor() {
-    this.selectedPantsColor = {};
+    this.selectedPantsColor = false;
     this.filteredPantsColors = Array.from(this.pantsColors);
     this.filteredShoeColors = Array.from(this.shoeColors);
     this.resetShoeColor();
@@ -147,7 +214,7 @@ export class AppComponent implements OnInit {
   }
 
   resetShoeColor() {
-    this.selectedShoeColor = {};
+    this.selectedShoeColor = false;
     this.filteredShoeColors = Array.from(this.shoeColors);
     console.log('shoe colors', this.shoeColors);
     console.log('filtered shoe colors', this.filteredShoeColors);
