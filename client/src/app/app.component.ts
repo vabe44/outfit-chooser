@@ -55,7 +55,6 @@ export class AppComponent implements OnInit {
 
     this.currentStep = 1;
     this.currentTask = 'Select one of the clothes to start:';
-    this.currentlyChoosing = 'none';
   }
 
   checkIfSelected(currentlyChoosing) {
@@ -76,26 +75,11 @@ export class AppComponent implements OnInit {
   setCurrentlyChoosing(currentlyChoosing) {
     this.currentTask = `Select the color of your ${currentlyChoosing}:`;
     // nothing selected yet!
-    if (!this.selectedShirtColor && !this.selectedPantsColor && !this.selectedPantsColor) {
+    if (!this.selectedShirtColor && !this.selectedPantsColor && !this.selectedShoeColor) {
       // 0
       console.log(0);
       this.currentlyChoosing = currentlyChoosing;
       this.currentStep = 2;
-    } else if ( currentlyChoosing === 'shirt' && (this.selectedPantsColor || this.selectedShoeColor) )  {
-      // 1
-      console.log(1);
-      this.currentlyChoosing = 'shirt';
-      this.currentStep = 3;
-    } else if ( currentlyChoosing === 'pants' && (this.selectedShirtColor || this.selectedShoeColor) )  {
-      // 2
-      console.log(2);
-      this.currentlyChoosing = 'pants';
-      this.currentStep = 3;
-    } else if ( currentlyChoosing === 'shoes' && (this.selectedShirtColor || this.selectedPantsColor) )  {
-      // 3
-      console.log(3);
-      this.currentlyChoosing = 'shoes';
-      this.currentStep = 3;
     } else if ( currentlyChoosing === 'shirt' && (this.selectedPantsColor && this.selectedShoeColor) )  {
       // 4
       console.log(4);
@@ -111,6 +95,21 @@ export class AppComponent implements OnInit {
       console.log(6);
       this.currentlyChoosing = 'shoes';
       this.currentStep = 4;
+    } else if ( currentlyChoosing === 'shirt' && (!this.selectedPantsColor || !this.selectedShoeColor) )  {
+      // 1
+      console.log(1);
+      this.currentlyChoosing = 'shirt';
+      this.currentStep = 3;
+    } else if ( currentlyChoosing === 'pants' && (!this.selectedShirtColor || !this.selectedShoeColor) )  {
+      // 2
+      console.log(2);
+      this.currentlyChoosing = 'pants';
+      this.currentStep = 3;
+    } else if ( currentlyChoosing === 'shoes' && (!this.selectedShirtColor || !this.selectedPantsColor) )  {
+      // 3
+      console.log(3);
+      this.currentlyChoosing = 'shoes';
+      this.currentStep = 3;
     } else {
       console.log('errorrrrrrrrrrrrrrrr');
     }
