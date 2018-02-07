@@ -127,51 +127,52 @@ export class AppComponent implements OnInit {
 
   selectShirtColor(shirtColor) {
     this.selectedShirtColor = shirtColor;
-    this.filteredPantsColors.length = 0;
-    this.shirtPants.forEach(shirtPants => {
-      if (shirtPants.shirt_color_id.id === this.selectedShirtColor.id) {
-        this.filteredPantsColors.push(shirtPants.pant_color_id);
-      }
-    });
+
+    // selecting shirt: we have to only sort pants, and only if pants are not already set
+    // but if shoes are already set, only show pants that match both shirt and shoes
+    // if shoes not set, display all matching pants with shirt
+    if (!this.selectedPantsColor && !this.selectedShoeColor) {
+      // sort pants based on shirt only
+      this.filteredPantsColors.length = 0;
+      this.shirtPants.forEach(shirtPants => {
+        if (shirtPants.shirt_color_id.id === this.selectedShirtColor.id) {
+          this.filteredPantsColors.push(shirtPants.pant_color_id);
+        }
+      });
+    } else if (!this.selectedPantsColor && this.selectedShoeColor) {
+      // sort pants based on shirt and shoes
+      // need only pants thats match both selected shirt and shoes, eg. shirtColor: 2 (black), shoeColor: 1 (black)
+      this.filteredPantsColors.length = 0;
+
+      // check if pants match with selected shirt color
+      this.shirtPants.forEach(shirtPants => {
+        if (shirtPants.shirt_color_id.id === this.selectedShirtColor.id) {
+
+          // good pant match with shirt, now check if there is a pant-shoe combo with good pant-selected shoe combo
+          this.pantsShoes.forEach(pantsShoes => {
+            if (pantsShoes.pant_color_id.id === shirtPants.pant_color_id.id && pantsShoes.shoe_color_id.id === this.selectedShoeColor.id) {
+              this.filteredPantsColors.push(shirtPants.pant_color_id);
+            }
+          });
+
+        }
+      });
+
+    } else {
+      console.log('pants already set, nothing to sort!');
+    }
   }
 
   selectPantsColor(pantsColor) {
     this.selectedPantsColor = pantsColor;
 
-    // filter shoe colors
-    this.filteredShoeColors.length = 0;
-    this.pantsShoes.forEach(pantsShoes => {
-      if (pantsShoes.pant_color_id.id === this.selectedPantsColor.id) {
-        this.filteredShoeColors.push(pantsShoes.shoe_color_id);
-      }
-    });
+    /*  selecting pants: we have to sort shirts AND shoes, but only if they are not already set
+        if shirt not set, display all matching shirt with pants
+        if shoes not set, display all matching shoes with pants
+    */
 
-    // check if shirt already selected
-    if (this.selectedShirtColor.id) {
-      // if shirt already selected, check if it matches with with pants
-      // if it doesnt match with pants, delete selection and show matching shirts
-      let selectedShirtMatches: boolean;
-      this.shirtPants.forEach(ShirtPants => {
-        if (this.selectedPantsColor.id === ShirtPants.pant_color_id.id) {
-          selectedShirtMatches = true;
-        }
-      });
-
-      if (!selectedShirtMatches) {
-        this.selectedShirtColor = false;
-      }
-
-      // filter shirt colors
-      this.filteredShirtColors.length = 0;
-      this.shirtPants.forEach(shirtPants => {
-        if (shirtPants.pant_color_id.id === this.selectedPantsColor.id) {
-          this.filteredShirtColors.push(shirtPants.shirt_color_id);
-        }
-      });
-
-    } else {
-      // shirt not selected, filter shirts to show matching ones
-      // filter shirt colors
+    if (!this.selectedShirtColor) {
+      // display all matching shirt with pants
       this.filteredShirtColors.length = 0;
       this.shirtPants.forEach(shirtPants => {
         if (shirtPants.pant_color_id.id === this.selectedPantsColor.id) {
@@ -179,10 +180,57 @@ export class AppComponent implements OnInit {
         }
       });
     }
+
+    if (!this.selectedShoeColor) {
+      // display all matching shoes with pants
+      this.filteredShoeColors.length = 0;
+      this.pantsShoes.forEach(pantsShoes => {
+        if (pantsShoes.pant_color_id.id === this.selectedPantsColor.id) {
+          this.filteredShoeColors.push(pantsShoes.shoe_color_id);
+        }
+      });
+    }
+
   }
 
   selectShoeColor(shoeColor) {
     this.selectedShoeColor = shoeColor;
+
+    // selecting shoes: we have to only sort pants, and only if pants are not already set
+    // but if shirt is already set, only show pants that match both shirt and shoes
+    // if shirt is not set, display all matching pants with shoes
+    if (!this.selectedPantsColor && !this.selectedShirtColor) {
+      console.log('// sort pants based on shoes only');
+      // sort pants based on shoes only
+      this.filteredPantsColors.length = 0;
+      this.pantsShoes.forEach(pantsShoes => {
+        if (pantsShoes.shoe_color_id.id === this.selectedShoeColor.id) {
+          this.filteredPantsColors.push(pantsShoes.pant_color_id);
+        }
+      });
+    } else if (!this.selectedPantsColor && this.selectedShirtColor) {
+      console.log('// sort pants based on shirt and shoes');
+      // sort pants based on shirt and shoes
+      // need only pants thats match both selected shirt and shoes, eg. shirtColor: 2 (black), shoeColor: 1 (black)
+      this.filteredPantsColors.length = 0;
+
+      // check if pants match with selected shoe color
+      this.pantsShoes.forEach(pantsShoes => {
+        if (pantsShoes.shoe_color_id.id === this.selectedShoeColor.id) {
+
+          // good pant match with shoe, now check if there is a pant-shirt combo with good pant-selected shirt combo
+          this.shirtPants.forEach(shirtPants => {
+            if (shirtPants.pant_color_id.id === pantsShoes.pant_color_id.id &&
+                shirtPants.shirt_color_id.id === this.selectedShirtColor.id) {
+              this.filteredPantsColors.push(pantsShoes.pant_color_id);
+            }
+          });
+
+        }
+      });
+    } else {
+      console.log('pants already set, nothing to sort!');
+    }
   }
 
   resetSkinTone() {
