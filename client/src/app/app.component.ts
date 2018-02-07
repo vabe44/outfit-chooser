@@ -233,6 +233,44 @@ export class AppComponent implements OnInit {
     }
   }
 
+  selectPrevious(item: string) {
+    let index: number;
+    if (item === 'shirt') {
+      index = this.filteredShirtColors.indexOf(this.selectedShirtColor);
+      index <= 0 ? index = this.filteredShirtColors.length - 1 : index--;
+      this.selectShirtColor(this.filteredShirtColors[index]);
+    } else if (item === 'pants') {
+      index = this.filteredPantsColors.indexOf(this.selectedPantsColor);
+      index <= 0 ? index = this.filteredPantsColors.length - 1 : index--;
+      this.selectPantsColor(this.filteredPantsColors[index]);
+    } else if (item === 'shoes') {
+      index = this.filteredShoeColors.indexOf(this.selectedShoeColor);
+      index <= 0 ? index = this.filteredShoeColors.length - 1 : index--;
+      this.selectShoeColor(this.filteredShoeColors[index]);
+    } else {
+      console.log('error, unknown item');
+    }
+  }
+
+  selectNext(item: string) {
+    let index: number;
+    if (item === 'shirt') {
+      index = this.filteredShirtColors.indexOf(this.selectedShirtColor);
+      index === this.filteredShirtColors.length - 1 ? index = 0 : index++;
+      this.selectShirtColor(this.filteredShirtColors[index]);
+    } else if (item === 'pants') {
+      index = this.filteredPantsColors.indexOf(this.selectedPantsColor);
+      index === this.filteredPantsColors.length - 1 ? index = 0 : index++;
+      this.selectPantsColor(this.filteredPantsColors[index]);
+    } else if (item === 'shoes') {
+      index = this.filteredShoeColors.indexOf(this.selectedShoeColor);
+      index === this.filteredShoeColors.length - 1 ? index = 0 : index++;
+      this.selectShoeColor(this.filteredShoeColors[index]);
+    } else {
+      console.log('error, unknown item');
+    }
+  }
+
   resetSkinTone() {
     this.selectedSkinTone = false;
     this.filteredSkinTones = Array.from(this.skinTones);

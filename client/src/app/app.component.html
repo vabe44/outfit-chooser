@@ -11,25 +11,25 @@
   <div class="container">
     <!-- <div class="head">&nbsp;</div> -->
     <div class="shirt-container">
-      <div class="left"> {{ currentlyChoosing === 'shirt' ? '<' : '' }} </div>
+      <div class="left" (click)="selectPrevious('shirt')"> {{ currentlyChoosing === 'shirt' ? '<' : '' }} </div>
       <div class="shirt" [style.background-color]="selectedShirtColor.colorcode" (click)="checkIfSelected('shirt')">&nbsp;</div>
-      <div class="right"> {{ currentlyChoosing === 'shirt' ? '>' : '' }} </div>
+      <div class="right" (click)="selectNext('shirt')"> {{ currentlyChoosing === 'shirt' ? '>' : '' }} </div>
     </div>
     <div class="pants-container">
-      <div class="left"> {{ currentlyChoosing === 'pants' ? '<' : '' }}  </div>
+      <div class="left" (click)="selectPrevious('pants')"> {{ currentlyChoosing === 'pants' ? '<' : '' }}  </div>
       <div class="pants">
         <div class="leg" [style.background-color]="selectedPantsColor.colorcode" (click)="checkIfSelected('pants')">&nbsp;</div>
         <div class="leg" [style.background-color]="selectedPantsColor.colorcode" (click)="checkIfSelected('pants')">&nbsp;</div>
       </div>
-      <div class="right"> {{ currentlyChoosing === 'pants' ? '>' : '' }}  </div>
+      <div class="right" (click)="selectNext('pants')"> {{ currentlyChoosing === 'pants' ? '>' : '' }}  </div>
     </div>
     <div class="shoes-container">
-      <div class="left"> {{ currentlyChoosing === 'shoes' ? '<' : '' }}  </div>
+      <div class="left" (click)="selectPrevious('shoes')"> {{ currentlyChoosing === 'shoes' ? '<' : '' }}  </div>
       <div class="shoes">
         <div class="shoe" [style.background-color]="selectedShoeColor.colorcode" (click)="checkIfSelected('shoes')">&nbsp;</div>
         <div class="shoe" [style.background-color]="selectedShoeColor.colorcode" (click)="checkIfSelected('shoes')">&nbsp;</div>
       </div>
-      <div class="right"> {{ currentlyChoosing === 'shoes' ? '>' : '' }}  </div>
+      <div class="right" (click)="selectNext('shoes')"> {{ currentlyChoosing === 'shoes' ? '>' : '' }}  </div>
     </div>
   </div>
 
