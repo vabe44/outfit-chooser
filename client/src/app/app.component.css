@@ -15,8 +15,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: lightgrey; */
-    /* outline: 1px solid black; */
 }
 
 .mannequin .head {
@@ -95,6 +93,18 @@
 
 .selectable {
     cursor: pointer;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.debug {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .settings {

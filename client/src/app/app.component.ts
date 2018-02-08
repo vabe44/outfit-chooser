@@ -12,6 +12,8 @@ import { ClothesService } from './services/clothes.service';
 export class AppComponent implements OnInit {
   title = 'Outfit Chooser';
 
+  debug = false;
+
   skinTones: any[] = [];
   shirtColors: any[] = [];
   pantsColors: any[] = [];
@@ -269,6 +271,22 @@ export class AppComponent implements OnInit {
     } else {
       console.log('error, unknown item');
     }
+  }
+
+  startOver() {
+    this.currentStep = 1;
+    this.currentTask = 'Select one of the clothes to start:';
+    this.currentlyChoosing = '';
+
+    this.selectedSkinTone = false;
+    this.selectedShirtColor = false;
+    this.selectedPantsColor = false;
+    this.selectedShoeColor = false;
+
+    this.filteredSkinTones = Array.from(this.skinTones);
+    this.filteredShirtColors = Array.from(this.shirtColors);
+    this.filteredPantsColors = Array.from(this.pantsColors);
+    this.filteredShoeColors = Array.from(this.shoeColors);
   }
 
   resetSkinTone() {
