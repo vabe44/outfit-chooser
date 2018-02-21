@@ -8,12 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require('dotenv').config();
 require("reflect-metadata");
 const typeorm_1 = require("typeorm");
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const cors = require("cors");
+const passport = require("passport");
 const routes_1 = require("./routes");
 // create connection with database
 // note that it's not active database connection
@@ -21,6 +23,12 @@ const routes_1 = require("./routes");
 typeorm_1.createConnection().then((connection) => __awaiter(this, void 0, void 0, function* () {
     // create express app
     const app = express();
+    app.use(passport.initialize());
+    // parse application/x-www-form-urlencoded
+    // for easier testing with Postman or plain HTML forms
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
     app.use(bodyParser.json());
     app.use(express.static(path.join(__dirname, '../../client/src')));
     const corsOptions = {

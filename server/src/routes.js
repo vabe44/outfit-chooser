@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const homeController_1 = require("./controller/home/homeController");
+const loginController = require("./controller/login/loginController");
+const registerController = require("./controller/register/registerController");
 const SkinToneGetAllAction_1 = require("./controller/skin-tones/SkinToneGetAllAction");
 const SkinToneGetByIdAction_1 = require("./controller/skin-tones/SkinToneGetByIdAction");
 const SkinToneSaveAction_1 = require("./controller/skin-tones/SkinToneSaveAction");
@@ -19,6 +21,18 @@ exports.AppRoutes = [
         method: "get",
         action: homeController_1.homeController
     },
+    // AUTH API
+    {
+        path: "/login",
+        method: "post",
+        action: loginController.post
+    },
+    {
+        path: "/register",
+        method: "post",
+        action: registerController.post
+    },
+    // DATA API
     {
         path: "/skin-tones",
         method: "get",

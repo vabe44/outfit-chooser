@@ -1,4 +1,6 @@
 import {homeController} from "./controller/home/homeController";
+import * as loginController from "./controller/login/loginController";
+import * as registerController from "./controller/register/registerController";
 
 import {skinToneGetAllAction} from "./controller/skin-tones/SkinToneGetAllAction";
 import {skinToneGetByIdAction} from "./controller/skin-tones/SkinToneGetByIdAction";
@@ -20,6 +22,19 @@ export const AppRoutes = [
         action: homeController
     },
 
+    // AUTH API
+    {
+        path: "/login",
+        method: "post",
+        action: loginController.post
+    },
+    {
+        path: "/register",
+        method: "post",
+        action: registerController.post
+    },
+
+    // DATA API
     {
         path: "/skin-tones",
         method: "get",
