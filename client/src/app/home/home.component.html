@@ -1,0 +1,97 @@
+<ul>
+  <li *ngIf="authService.isLoggedIn()"><a routerLink="/admin">Admin</a></li>
+  <li *ngIf="!authService.isLoggedIn()"><a routerLink="/login">Login</a></li>
+  <li *ngIf="authService.isLoggedIn()"><a (click)="authService.logout()">Logout</a></li>
+</ul>
+
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome {{ authService.isLoggedIn() ? 'back to ' +title+ ', ' +authService.currentUser.username : 'to ' +title }}!
+  </h1>
+  <h4>Step {{ currentStep }} / 4</h4>
+  <p>{{ currentTask }}</p>
+</div>
+
+<div class="mannequin">
+  <div class="container">
+    <!-- <div class="head">&nbsp;</div> -->
+    <div class="shirt-container">
+      <div class="left" (click)="selectPrevious('shirt')"> {{ currentlyChoosing === 'shirt' ? '<' : '' }} </div>
+      <div class="shirt" [style.background-color]="selectedShirtColor.colorcode" (click)="checkIfSelected('shirt')">&nbsp;</div>
+      <div class="right" (click)="selectNext('shirt')"> {{ currentlyChoosing === 'shirt' ? '>' : '' }} </div>
+    </div>
+    <div class="pants-container">
+      <div class="left" (click)="selectPrevious('pants')"> {{ currentlyChoosing === 'pants' ? '<' : '' }}  </div>
+      <div class="pants">
+        <div class="leg" [style.background-color]="selectedPantsColor.colorcode" (click)="checkIfSelected('pants')">&nbsp;</div>
+        <div class="leg" [style.background-color]="selectedPantsColor.colorcode" (click)="checkIfSelected('pants')">&nbsp;</div>
+      </div>
+      <div class="right" (click)="selectNext('pants')"> {{ currentlyChoosing === 'pants' ? '>' : '' }}  </div>
+    </div>
+    <div class="shoes-container">
+      <div class="left" (click)="selectPrevious('shoes')"> {{ currentlyChoosing === 'shoes' ? '<' : '' }}  </div>
+      <div class="shoes">
+        <div class="shoe" [style.background-color]="selectedShoeColor.colorcode" (click)="checkIfSelected('shoes')">&nbsp;</div>
+        <div class="shoe" [style.background-color]="selectedShoeColor.colorcode" (click)="checkIfSelected('shoes')">&nbsp;</div>
+      </div>
+      <div class="right" (click)="selectNext('shoes')"> {{ currentlyChoosing === 'shoes' ? '>' : '' }}  </div>
+    </div>
+  </div>
+</div>
+
+<div class="controls">
+  <button (click)="startOver()">Start Over</button>
+</div>
+
+<div class="debug" *ngIf="debug">
+  <div class="info">
+    <div>currently choosing: {{ currentlyChoosing }}</div>
+    <div>skin tone: {{ selectedSkinTone ? selectedSkinTone.tone : 'not selected' }}</div>
+    <div>shirt: {{ selectedShirtColor ? selectedShirtColor.color : 'not selected' }}</div>
+    <div>pants: {{ selectedPantsColor ? selectedPantsColor.color : 'not selected' }}</div>
+    <div>shoes: {{ selectedShoeColor ? selectedShoeColor.color : 'not selected' }}</div>
+  </div>
+
+  <div class="settings">
+    <div class="skinTones" *ngIf="currentlyChoosing === 'skintone'">
+      Skin tones:
+      <ul>
+        <li (click)="resetSkinTone()">Reset</li>
+        <li *ngFor="let skinTone of skinTones" [class.selected]="selectedSkinTone.id == skinTone.id" (click)="selectSkinTone(skinTone)">
+          {{ skinTone.tone }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="shirtColors" *ngIf="currentlyChoosing === 'shirt'">
+      Shirt colors:
+      <ul>
+        <li (click)="resetShirtColor()">Reset</li>
+        <li *ngFor="let shirtColor of filteredShirtColors" [class.selected]="selectedShirtColor.id == shirtColor.id" (click)="selectShirtColor(shirtColor)">
+          {{ shirtColor.color }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="pantsColors" *ngIf="currentlyChoosing === 'pants'">
+      Pants colors:
+      <ul>
+        <li (click)="resetPantsColor()">Reset</li>
+        <li *ngFor="let pantsColor of filteredPantsColors" [class.selected]="selectedPantsColor.id == pantsColor.id" (click)="selectPantsColor(pantsColor)">
+          {{ pantsColor.color }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="shoeColors" *ngIf="currentlyChoosing === 'shoes'">
+      Shoe colors:
+      <ul>
+        <li (click)="resetShoeColor()">Reset</li>
+        <li *ngFor="let shoeColor of filteredShoeColors" [class.selected]="selectedShoeColor.id == shoeColor.id" (click)="selectShoeColor(shoeColor)">
+          {{ shoeColor.color }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
