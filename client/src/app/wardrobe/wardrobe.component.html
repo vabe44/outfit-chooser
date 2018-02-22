@@ -1,25 +1,34 @@
 <h1>Wardrobe</h1>
 <h2>Outfits</h2>
+<ul>
+  <li *ngFor="let outfit of outfits" (click)="showOutfit(outfit)">{{ outfit.name }}</li>
+</ul>
 
-<div class="mannequin">
-  <div class="container">
-    <!-- <div class="head">&nbsp;</div> -->
-    <div class="shirt-container">
-      <div class="shirt" [style.background-color]="selectedShirt.colorcode">&nbsp;</div>
-    </div>
-    <div class="pants-container">
-      <div class="pants">
-        <div class="leg" [style.background-color]="selectedPants.colorcode">&nbsp;</div>
-        <div class="leg" [style.background-color]="selectedPants.colorcode">&nbsp;</div>
+<div class="outfit" *ngIf="outfits.length">
+  <h3> {{ selectedOutfit.name }} </h3>
+  <div class="mannequin">
+    <div class="container">
+      <div class="shirt-container">
+        <div class="left">&nbsp;</div>
+        <div class="shirt" [style.background-color]="selectedOutfit.shirt.colorcode">&nbsp;</div>
+        <div class="right">&nbsp;</div>
       </div>
-    </div>
-    <div class="shoes-container">
-      <div class="shoes">
-        <div class="shoe" [style.background-color]="selectedShoes.colorcode">&nbsp;</div>
-        <div class="shoe" [style.background-color]="selectedShoes.colorcode">&nbsp;</div>
+      <div class="pants-container">
+        <div class="left">&nbsp;</div>
+        <div class="pants">
+          <div class="leg" [style.background-color]="selectedOutfit.pants.colorcode">&nbsp;</div>
+          <div class="leg" [style.background-color]="selectedOutfit.pants.colorcode">&nbsp;</div>
+        </div>
+        <div class="right">&nbsp;</div>
+      </div>
+      <div class="shoes-container">
+        <div class="left">&nbsp;</div>
+        <div class="shoes">
+          <div class="shoe" [style.background-color]="selectedOutfit.shoes.colorcode">&nbsp;</div>
+          <div class="shoe" [style.background-color]="selectedOutfit.shoes.colorcode">&nbsp;</div>
+        </div>
+        <div class="right">&nbsp;</div>
       </div>
     </div>
   </div>
 </div>
-
-<button (click)="setOutfit(0)">Use outfit 1</button>

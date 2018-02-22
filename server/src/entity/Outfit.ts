@@ -1,4 +1,8 @@
-import {Entity, Column, PrimaryGeneratedColumn, BaseEntity} from "typeorm";
+import { ShirtColor } from './ShirtColor';
+import {Entity, Column, PrimaryGeneratedColumn, BaseEntity, ManyToOne, OneToOne, JoinColumn} from "typeorm";
+import { User } from "./User";
+import { PantsColor } from './PantsColor';
+import { ShoeColor } from './ShoeColor';
 
 @Entity()
 export class Outfit extends BaseEntity {
@@ -6,18 +10,21 @@ export class Outfit extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    user: number;
+    @ManyToOne(type => ShirtColor, {eager: true})
+    @JoinColumn()
+    shirt: ShirtColor;
 
-    @Column()
-    shirt: number;
+    @OneToOne(type => PantsColor, {eager: true})
+    @JoinColumn()
+    pants: PantsColor;
 
-    @Column()
-    pants: number;
-
-    @Column()
-    shoes: number;
+    @OneToOne(type => ShoeColor, {eager: true})
+    @JoinColumn()
+    shoes: ShoeColor;
 
     @Column()
     name: string;
+
+    @ManyToOne(type => User, user => user.outfits)
+    user: User;
 }

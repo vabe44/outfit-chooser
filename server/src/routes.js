@@ -36,6 +36,11 @@ exports.AppRoutes = [
     // WARDROBE API
     {
         path: "/api/wardrobe",
+        method: "get",
+        action: wardrobeController.get
+    },
+    {
+        path: "/api/wardrobe",
         method: "post",
         action: wardrobeController.post
     },

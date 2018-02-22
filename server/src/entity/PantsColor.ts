@@ -1,3 +1,4 @@
+import { Outfit } from './Outfit';
 import {Index,Entity, PrimaryColumn, Column, OneToOne, OneToMany, ManyToOne, JoinColumn} from "typeorm";
 import {PantsShoes} from "./PantsShoes";
 import {ShirtPants} from "./ShirtPants";
@@ -34,5 +35,4 @@ export class PantsColor {
 
     @OneToMany(type=>ShirtPants, shirt_pants=>shirt_pants.pant_color_id)
     shirt_pants:ShirtPants[];
-
 }

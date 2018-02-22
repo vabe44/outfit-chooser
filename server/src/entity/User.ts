@@ -17,6 +17,6 @@ export class User extends BaseEntity {
     password: string;
 
     @OneToMany(type => Outfit, outfit => outfit.user) // note: we will create author property in the Photo class below
-    photos: Outfit[];
+    outfits: Outfit[];
 
 }

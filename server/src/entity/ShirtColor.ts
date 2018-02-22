@@ -1,6 +1,7 @@
 import {Index,Entity, PrimaryColumn, Column, OneToOne, OneToMany, ManyToOne, JoinColumn} from "typeorm";
 import {ShirtPants} from "./ShirtPants";
 import {SkinShirt} from "./SkinShirt";
+import { Outfit } from "./Outfit";
 
 
 @Entity("shirt_colors")

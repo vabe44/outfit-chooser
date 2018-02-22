@@ -9,7 +9,7 @@ export class WardrobeService {
   }
 
   getOutfits() {
-    return this.authHttp.get('http://localhost:3000/skin-tones')
+    return this.authHttp.get('http://localhost:3000/api/wardrobe')
       .map(response => response.json());
   }
 

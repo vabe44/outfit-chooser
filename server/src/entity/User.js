@@ -33,7 +33,7 @@ __decorate([
     typeorm_1.OneToMany(type => Outfit_1.Outfit, outfit => outfit.user) // note: we will create author property in the Photo class below
     ,
     __metadata("design:type", Array)
-], User.prototype, "photos", void 0);
+], User.prototype, "outfits", void 0);
 User = __decorate([
     typeorm_1.Entity()
 ], User);
