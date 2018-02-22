@@ -335,12 +335,15 @@ export class HomeComponent implements OnInit {
   }
 
   saveOutfit() {
+    const name = prompt('Please enter the name of the outfit');
     const outfit = {
       shirt: this.selectedShirtColor,
       pants: this.selectedPantsColor,
-      shoes: this.selectedShoeColor
+      shoes: this.selectedShoeColor,
+      name: name || 'N/A'
     };
-    this.wardrobeService.saveOutfit(outfit);
+    this.wardrobeService.saveOutfit(outfit).subscribe(response => {
+      alert(response.message);
+    });
   }
-
 }

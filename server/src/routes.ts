@@ -1,6 +1,7 @@
 import {homeController} from "./controller/home/homeController";
 import * as loginController from "./controller/login/loginController";
 import * as registerController from "./controller/register/registerController";
+import * as wardrobeController from "./controller/wardrobe/wardrobeController";
 
 import {skinToneGetAllAction} from "./controller/skin-tones/SkinToneGetAllAction";
 import {skinToneGetByIdAction} from "./controller/skin-tones/SkinToneGetByIdAction";
@@ -34,7 +35,14 @@ export const AppRoutes = [
         action: registerController.post
     },
 
-    // DATA API
+    // WARDROBE API
+    {
+        path: "/api/wardrobe",
+        method: "post",
+        action: wardrobeController.post
+    },
+
+    // PUBLIC DATA API
     {
         path: "/skin-tones",
         method: "get",

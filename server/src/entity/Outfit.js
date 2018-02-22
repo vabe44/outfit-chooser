@@ -10,32 +10,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const Outfit_1 = require("./Outfit");
-let User = class User extends typeorm_1.BaseEntity {
+let Outfit = class Outfit extends typeorm_1.BaseEntity {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], User.prototype, "id", void 0);
+], Outfit.prototype, "id", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], Outfit.prototype, "user", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], Outfit.prototype, "shirt", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], Outfit.prototype, "pants", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], Outfit.prototype, "shoes", void 0);
 __decorate([
     typeorm_1.Column(),
     __metadata("design:type", String)
-], User.prototype, "username", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], User.prototype, "email", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], User.prototype, "password", void 0);
-__decorate([
-    typeorm_1.OneToMany(type => Outfit_1.Outfit, outfit => outfit.user) // note: we will create author property in the Photo class below
-    ,
-    __metadata("design:type", Array)
-], User.prototype, "photos", void 0);
-User = __decorate([
+], Outfit.prototype, "name", void 0);
+Outfit = __decorate([
     typeorm_1.Entity()
-], User);
-exports.User = User;
-//# sourceMappingURL=User.js.map
+], Outfit);
+exports.Outfit = Outfit;
+//# sourceMappingURL=Outfit.js.map

@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const homeController_1 = require("./controller/home/homeController");
 const loginController = require("./controller/login/loginController");
 const registerController = require("./controller/register/registerController");
+const wardrobeController = require("./controller/wardrobe/wardrobeController");
 const SkinToneGetAllAction_1 = require("./controller/skin-tones/SkinToneGetAllAction");
 const SkinToneGetByIdAction_1 = require("./controller/skin-tones/SkinToneGetByIdAction");
 const SkinToneSaveAction_1 = require("./controller/skin-tones/SkinToneSaveAction");
@@ -32,7 +33,13 @@ exports.AppRoutes = [
         method: "post",
         action: registerController.post
     },
-    // DATA API
+    // WARDROBE API
+    {
+        path: "/api/wardrobe",
+        method: "post",
+        action: wardrobeController.post
+    },
+    // PUBLIC DATA API
     {
         path: "/skin-tones",
         method: "get",

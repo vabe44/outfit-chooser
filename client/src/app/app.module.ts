@@ -1,7 +1,7 @@
 import { AuthHttp, AUTH_PROVIDERS, provideAuth, AuthConfig } from 'angular2-jwt/angular2-jwt';
 import { AuthGuard } from './services/auth-guard.service';
 import { NgModule } from '@angular/core';
-import { BrowserXhr } from '@angular/http';
+import { BrowserXhr, RequestOptions } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, Http, BaseRequestOptions } from '@angular/http';
@@ -21,7 +21,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 import { WardrobeComponent } from './wardrobe/wardrobe.component';
 
-export function getAuthHttp(http) {
+export function getAuthHttp(http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
     tokenName: 'token'
   }), http);
@@ -58,7 +58,7 @@ export function getAuthHttp(http) {
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,
-      deps: [Http]
+      deps: [Http, RequestOptions]
     },
     // CORS
     {provide: BrowserXhr, useClass: CustExtBrowserXhr},
