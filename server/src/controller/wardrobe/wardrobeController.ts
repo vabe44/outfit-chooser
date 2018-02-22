@@ -3,15 +3,11 @@ import { Outfit } from "../../entity/Outfit";
 import * as jwt from "jsonwebtoken";
 
 export async function get(request: Request, response: Response) {
-
-    const token = request.headers.authorization.toString().replace('Bearer ', '');
-
     try {
+        const token = request.headers.authorization.toString().replace('Bearer ', '');
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
         const outfits = await Outfit.find({ user: decodedToken.id });
-        console.log(outfits);
         response.json(outfits);
-
     } catch(err) {
         console.log(err);
         response.status(400).json({ message: 'Failed to get outfits. Please try again.' });
@@ -19,10 +15,8 @@ export async function get(request: Request, response: Response) {
 }
 
 export async function post(request: Request, response: Response) {
-
-    const token = request.headers.authorization.toString().replace('Bearer ', '');
-
     try {
+        const token = request.headers.authorization.toString().replace('Bearer ', '');
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 
         const outfit = new Outfit();
@@ -34,9 +28,21 @@ export async function post(request: Request, response: Response) {
         await outfit.save();
 
         response.status(201).json({ message: 'Success! Outfit saved to wardrobe.'});
-
     } catch(err) {
         console.log(err);
         response.status(400).json({ message: 'Failed to save outfit. Please try again.' });
+    }
+}
+
+export async function remove(request: Request, response: Response) {
+    try {
+        const token = request.headers.authorization.toString().replace('Bearer ', '');
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        const outfit = await Outfit.find({ id: request.params.id, user: decodedToken.id });
+        await Outfit.remove(outfit);
+        response.json({ message: 'Success! Outfit removed from wardrobe.'});
+    } catch(err) {
+        console.log(err);
+        response.status(400).json({ message: 'Failed to remove outfit. Please try again.' });
     }
 }

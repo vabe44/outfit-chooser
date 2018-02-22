@@ -46,6 +46,11 @@ export const AppRoutes = [
         method: "post",
         action: wardrobeController.post
     },
+    {
+        path: "/api/wardrobe/:id",
+        method: "delete",
+        action: wardrobeController.remove
+    },
 
     // PUBLIC DATA API
     {

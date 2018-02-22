@@ -14,8 +14,13 @@ export class WardrobeService {
   }
 
   saveOutfit(outfit) {
-    console.log('saving outfit: ', outfit);
     return this.authHttp.post('http://localhost:3000/api/wardrobe', outfit)
+      .map(response => response.json());
+  }
+
+  deleteOutfit(outfit) {
+    console.log('deleting outfit: ', outfit);
+    return this.authHttp.delete('http://localhost:3000/api/wardrobe/' + outfit.id)
       .map(response => response.json());
   }
 }

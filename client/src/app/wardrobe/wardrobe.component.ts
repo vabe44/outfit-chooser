@@ -25,4 +25,13 @@ export class WardrobeComponent implements OnInit {
   showOutfit(outfit) {
     this.selectedOutfit = outfit;
   }
+
+  deleteOutfit(outfit) {
+    const shouldDelete = confirm('Are you sure you want to delete this outfit?');
+    if (shouldDelete) {
+      console.log('OK, deleting outfit!', this.selectedOutfit);
+      this.wardrobeService.deleteOutfit(outfit)
+        .subscribe(response => console.log(response));
+    }
+  }
 }

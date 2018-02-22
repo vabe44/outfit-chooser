@@ -12,11 +12,10 @@ const Outfit_1 = require("../../entity/Outfit");
 const jwt = require("jsonwebtoken");
 function get(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
-        const token = request.headers.authorization.toString().replace('Bearer ', '');
         try {
+            const token = request.headers.authorization.toString().replace('Bearer ', '');
             const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
             const outfits = yield Outfit_1.Outfit.find({ user: decodedToken.id });
-            console.log(outfits);
             response.json(outfits);
         }
         catch (err) {
@@ -28,8 +27,8 @@ function get(request, response) {
 exports.get = get;
 function post(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
-        const token = request.headers.authorization.toString().replace('Bearer ', '');
         try {
+            const token = request.headers.authorization.toString().replace('Bearer ', '');
             const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
             const outfit = new Outfit_1.Outfit();
             outfit.user = decodedToken.id;
@@ -47,4 +46,20 @@ function post(request, response) {
     });
 }
 exports.post = post;
+function remove(request, response) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const token = request.headers.authorization.toString().replace('Bearer ', '');
+            const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+            const outfit = yield Outfit_1.Outfit.find({ id: request.params.id, user: decodedToken.id });
+            yield Outfit_1.Outfit.remove(outfit);
+            response.json({ message: 'Success! Outfit removed from wardrobe.' });
+        }
+        catch (err) {
+            console.log(err);
+            response.status(400).json({ message: 'Failed to remove outfit. Please try again.' });
+        }
+    });
+}
+exports.remove = remove;
 //# sourceMappingURL=wardrobeController.js.map
