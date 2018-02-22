@@ -12,4 +12,7 @@ export class WardrobeService {
       .map(response => response.json());
   }
 
+  saveOutfit(outfit) {
+    console.log('saving outfit: ', outfit);
+  }
 }

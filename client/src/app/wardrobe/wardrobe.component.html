@@ -1,5 +1,25 @@
 <h1>Wardrobe</h1>
 <h2>Outfits</h2>
-<ul>
-  <li *ngFor="let outfit of outfits">{{ outfit.tone }}</li>
-</ul>
+
+<div class="mannequin">
+  <div class="container">
+    <!-- <div class="head">&nbsp;</div> -->
+    <div class="shirt-container">
+      <div class="shirt" [style.background-color]="selectedShirt.colorcode">&nbsp;</div>
+    </div>
+    <div class="pants-container">
+      <div class="pants">
+        <div class="leg" [style.background-color]="selectedPants.colorcode">&nbsp;</div>
+        <div class="leg" [style.background-color]="selectedPants.colorcode">&nbsp;</div>
+      </div>
+    </div>
+    <div class="shoes-container">
+      <div class="shoes">
+        <div class="shoe" [style.background-color]="selectedShoes.colorcode">&nbsp;</div>
+        <div class="shoe" [style.background-color]="selectedShoes.colorcode">&nbsp;</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button (click)="setOutfit(0)">Use outfit 1</button>

@@ -1,3 +1,4 @@
+import { WardrobeService } from './../services/wardrobe.service';
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
@@ -36,7 +37,11 @@ export class HomeComponent implements OnInit {
   filteredPantsColors: any[] = [];
   filteredShoeColors: any[] = [];
 
-  constructor(private service: ClothesService, private authService: AuthService) {
+  constructor(
+    private service: ClothesService,
+    private authService: AuthService,
+    private wardrobeService: WardrobeService
+  ) {
   }
 
   ngOnInit() {
@@ -130,6 +135,8 @@ export class HomeComponent implements OnInit {
   selectShirtColor(shirtColor) {
     this.selectedShirtColor = shirtColor;
 
+    console.log(this.selectedShirtColor);
+
     // selecting shirt: we have to only sort pants, and only if pants are not already set
     // but if shoes are already set, only show pants that match both shirt and shoes
     // if shoes not set, display all matching pants with shirt
@@ -168,6 +175,8 @@ export class HomeComponent implements OnInit {
   selectPantsColor(pantsColor) {
     this.selectedPantsColor = pantsColor;
 
+    console.log(this.selectedPantsColor);
+
     /*  selecting pants: we have to sort shirts AND shoes, but only if they are not already set
         if shirt not set, display all matching shirt with pants
         if shoes not set, display all matching shoes with pants
@@ -197,6 +206,8 @@ export class HomeComponent implements OnInit {
 
   selectShoeColor(shoeColor) {
     this.selectedShoeColor = shoeColor;
+
+    console.log(this.selectedShoeColor);
 
     // selecting shoes: we have to only sort pants, and only if pants are not already set
     // but if shirt is already set, only show pants that match both shirt and shoes
@@ -321,6 +332,15 @@ export class HomeComponent implements OnInit {
     this.filteredShoeColors = Array.from(this.shoeColors);
     console.log('shoe colors', this.shoeColors);
     console.log('filtered shoe colors', this.filteredShoeColors);
+  }
+
+  saveOutfit() {
+    const outfit = {
+      shirt: this.selectedShirtColor,
+      pants: this.selectedPantsColor,
+      shoes: this.selectedShoeColor
+    };
+    this.wardrobeService.saveOutfit(outfit);
   }
 
 }

@@ -1,0 +1,117 @@
+.debug {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mannequin {
+    display: flex;
+    justify-content: center;
+    height: 350px;
+}
+
+.mannequin .container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mannequin .head {
+    width: 50px;
+    height: 50px;
+    background-color: beige;
+    border-radius: 75px;
+}
+
+.mannequin .shirt-container {
+    display: flex;
+    width: 100%;
+    height: 50%;
+}
+
+.mannequin .shirt {
+    width: 50%;
+    height: 100%;
+    background-color: white;
+    border: 1px solid black;
+}
+
+
+.mannequin .shirt-container {
+    display: flex;
+    width: 100%;
+    height: 50%;
+}
+
+.mannequin .pants-container {
+    width: 100%;
+    height: 40%;
+    display: flex;
+}
+
+.mannequin .pants {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mannequin .pants .leg {
+    width: 25%;
+    background-color: white;
+    border: 1px solid black;
+    margin-top: 1px;
+    margin-bottom: -1px;
+}
+
+.mannequin .shoes-container {
+    width: 100%;
+    height: 10%;
+    display: flex;
+}
+
+.mannequin .shoes {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mannequin .shoes .shoe {
+    width: 25%;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.mannequin .left, .mannequin .right {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectable {
+    cursor: pointer;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.debug {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.settings {
+    display: flex;
+    /* justify-content: space-around; */
+}
+
+.selected {
+    font-weight: bold;
+}
