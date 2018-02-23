@@ -30,7 +30,7 @@ typeorm_1.createConnection().then((connection) => __awaiter(this, void 0, void 0
         extended: true
     }));
     app.use(bodyParser.json());
-    app.use(express.static(path.join(__dirname, process.env.CLIENT_PATH)));
+    app.use(express.static(path.join(__dirname, '../../' + process.env.CLIENT_PATH)));
     const corsOptions = {
         origin: process.env.CLIENT_URL_FOR_CORS,
         credentials: true,
@@ -46,7 +46,7 @@ typeorm_1.createConnection().then((connection) => __awaiter(this, void 0, void 0
         });
     });
     // run app
-    app.listen(3000);
-    console.log("Express application is up and running on port 3000");
+    app.listen(process.env.PORT);
+    console.log("Express application is up and running on port " + process.env.PORT);
 })).catch(error => console.log("TypeORM connection error: ", error));
 //# sourceMappingURL=index.js.map

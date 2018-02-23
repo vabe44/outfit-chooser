@@ -45,5 +45,8 @@
   },
   "scripts": {
     "start": "tsc && node src/index.js"
+  },
+  "engines": {
+    "node": "9.2.0"
   }
 }
