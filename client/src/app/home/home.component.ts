@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private service: ClothesService,
-    private authService: AuthService,
+    public authService: AuthService,
     private wardrobeService: WardrobeService
   ) {
   }
