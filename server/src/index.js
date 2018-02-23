@@ -30,7 +30,7 @@ typeorm_1.createConnection().then((connection) => __awaiter(this, void 0, void 0
         extended: true
     }));
     app.use(bodyParser.json());
-    app.use(express.static(path.join(__dirname, '../../client/src')));
+    app.use(express.static(path.join(__dirname, process.env.CLIENT_PATH)));
     const corsOptions = {
         origin: 'http://localhost:4200',
         credentials: true,

@@ -25,7 +25,7 @@ createConnection().then(async connection => {
     }));
 
     app.use(bodyParser.json());
-    app.use(express.static(path.join(__dirname, '../../client/src')));
+    app.use(express.static(path.join(__dirname, process.env.CLIENT_PATH)));
 
     const corsOptions = {
         origin: 'http://localhost:4200',
