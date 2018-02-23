@@ -31,6 +31,7 @@ export class WardrobeComponent implements OnInit {
     if (shouldDelete) {
       console.log('OK, deleting outfit!', this.selectedOutfit);
       this.outfits.splice(this.outfits.indexOf(outfit), 1);
+      if (this.outfits.length) { this.selectedOutfit = this.outfits[0]; }
       this.wardrobeService.deleteOutfit(outfit)
         .subscribe(response => console.log(response));
     }

@@ -1,7 +1,8 @@
 <ul>
   <li *ngIf="authService.isLoggedIn()"><a routerLink="/wardrobe">Wardrobe</a></li>
   <li *ngIf="!authService.isLoggedIn()"><a routerLink="/login">Login</a></li>
-  <li *ngIf="authService.isLoggedIn()"><a (click)="authService.logout()">Logout</a></li>
+  <li *ngIf="!authService.isLoggedIn()"><a routerLink="/register">Register</a></li>
+  <li *ngIf="authService.isLoggedIn()"><a routerLink="" (click)="authService.logout()">Logout</a></li>
 </ul>
 
 <!--The content below is only a placeholder and can be replaced.-->
@@ -42,7 +43,7 @@
 
 <div class="controls">
   <button (click)="startOver()">Start Over</button>
-  <button (click)="saveOutfit()">Save Outfit</button>
+  <button *ngIf="authService.isLoggedIn()" (click)="saveOutfit()">Save Outfit</button>
 </div>
 
 <div class="debug" *ngIf="debug">

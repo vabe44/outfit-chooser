@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const User_1 = require("../../entity/User");
+const jwt = require("jsonwebtoken");
 function post(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         const user = new User_1.User();
@@ -16,7 +17,18 @@ function post(request, response) {
         user.email = request.body.email;
         user.password = request.body.password;
         yield user.save();
-        response.json(user);
+        if (user.id) {
+            let payload = {
+                id: user.id,
+                email: user.email,
+                username: user.username
+            };
+            let token = jwt.sign(payload, process.env.JWT_SECRET);
+            response.json({ message: "ok", token: token });
+        }
+        else {
+            response.json({ message: "error" });
+        }
     });
 }
 exports.post = post;

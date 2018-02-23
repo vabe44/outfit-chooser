@@ -20,14 +20,14 @@ export async function post(request: Request, response: Response) {
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 
         const outfit = new Outfit();
-        outfit.user = decodedToken.id;
-        outfit.shirt = request.body.shirt.id;
-        outfit.pants = request.body.pants.id;
-        outfit.shoes = request.body.shoes.id;
+        outfit.user = decodedToken;
+        outfit.shirt = request.body.shirt;
+        outfit.pants = request.body.pants;
+        outfit.shoes = request.body.shoes;
         outfit.name = request.body.name;
         await outfit.save();
 
-        response.status(201).json({ message: 'Success! Outfit saved to wardrobe.'});
+        response.status(201).json({ message: 'Success! Outfit saved to wardrobe.', outfit: outfit });
     } catch(err) {
         console.log(err);
         response.status(400).json({ message: 'Failed to save outfit. Please try again.' });

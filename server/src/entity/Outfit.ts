@@ -10,21 +10,22 @@ export class Outfit extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(type => ShirtColor, {eager: true})
-    @JoinColumn()
+    @OneToOne(type => ShirtColor, {eager: true})
+    @JoinColumn({ name: 'shirt'})
     shirt: ShirtColor;
 
     @OneToOne(type => PantsColor, {eager: true})
-    @JoinColumn()
+    @JoinColumn({ name: 'pants'})
     pants: PantsColor;
 
     @OneToOne(type => ShoeColor, {eager: true})
-    @JoinColumn()
+    @JoinColumn({ name: 'shoes'})
     shoes: ShoeColor;
 
     @Column()
     name: string;
 
     @ManyToOne(type => User, user => user.outfits)
+    @JoinColumn({ name: 'user'})
     user: User;
 }

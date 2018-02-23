@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
-import * as jwt from "jsonwebtoken";
 import { User } from "../../entity/User";
+import * as jwt from "jsonwebtoken";
 
 export async function post(request: Request, response: Response) {
 

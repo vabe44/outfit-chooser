@@ -2,16 +2,17 @@ import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/observable/forkJoin';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ClothesService {
-  private skinTonesUrl = 'http://localhost:3000/skin-tones';
-  private shirtColorsUrl = 'http://localhost:3000/shirt-colors';
-  private pantsColorsUrl = 'http://localhost:3000/pants-colors';
-  private shoeColorsUrl = 'http://localhost:3000/shoe-colors';
-  private skinShirtUrls = 'http://localhost:3000/skin-shirts';
-  private shirtPantsUrls = 'http://localhost:3000/shirt-pants';
-  private pantsShoesUrls = 'http://localhost:3000/pants-shoes';
+  private skinTonesUrl = environment.apiUrl + '/skin-tones';
+  private shirtColorsUrl = environment.apiUrl + '/shirt-colors';
+  private pantsColorsUrl = environment.apiUrl + '/pants-colors';
+  private shoeColorsUrl = environment.apiUrl + '/shoe-colors';
+  private skinShirtUrls = environment.apiUrl + '/skin-shirts';
+  private shirtPantsUrls = environment.apiUrl + '/shirt-pants';
+  private pantsShoesUrls = environment.apiUrl + '/pants-shoes';
 
   constructor(private http: Http) { }
 

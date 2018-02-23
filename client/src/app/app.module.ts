@@ -45,6 +45,7 @@ export function getAuthHttp(http, options: RequestOptions) {
       { path: '', component: HomeComponent },
       { path: 'wardrobe', component: WardrobeComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
+      { path: 'register', component: SignupComponent },
       { path: 'no-access', component: NoAccessComponent },
       { path: '**', component: NotFoundComponent }
     ])

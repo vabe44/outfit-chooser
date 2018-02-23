@@ -21,18 +21,18 @@ __decorate([
     __metadata("design:type", Number)
 ], Outfit.prototype, "id", void 0);
 __decorate([
-    typeorm_1.ManyToOne(type => ShirtColor_1.ShirtColor, { eager: true }),
-    typeorm_1.JoinColumn(),
+    typeorm_1.OneToOne(type => ShirtColor_1.ShirtColor, { eager: true }),
+    typeorm_1.JoinColumn({ name: 'shirt' }),
     __metadata("design:type", ShirtColor_1.ShirtColor)
 ], Outfit.prototype, "shirt", void 0);
 __decorate([
     typeorm_1.OneToOne(type => PantsColor_1.PantsColor, { eager: true }),
-    typeorm_1.JoinColumn(),
+    typeorm_1.JoinColumn({ name: 'pants' }),
     __metadata("design:type", PantsColor_1.PantsColor)
 ], Outfit.prototype, "pants", void 0);
 __decorate([
     typeorm_1.OneToOne(type => ShoeColor_1.ShoeColor, { eager: true }),
-    typeorm_1.JoinColumn(),
+    typeorm_1.JoinColumn({ name: 'shoes' }),
     __metadata("design:type", ShoeColor_1.ShoeColor)
 ], Outfit.prototype, "shoes", void 0);
 __decorate([
@@ -41,6 +41,7 @@ __decorate([
 ], Outfit.prototype, "name", void 0);
 __decorate([
     typeorm_1.ManyToOne(type => User_1.User, user => user.outfits),
+    typeorm_1.JoinColumn({ name: 'user' }),
     __metadata("design:type", User_1.User)
 ], Outfit.prototype, "user", void 0);
 Outfit = __decorate([
