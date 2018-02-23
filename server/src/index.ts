@@ -28,7 +28,7 @@ createConnection().then(async connection => {
     app.use(express.static(path.join(__dirname, process.env.CLIENT_PATH)));
 
     const corsOptions = {
-        origin: 'http://localhost:4200',
+        origin: process.env.CLIENT_URL_FOR_CORS,
         credentials: true,
     }
     //here is the magic
