@@ -68,11 +68,11 @@ function remove(request, response) {
             const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
             const outfit = yield Outfit_1.Outfit.find({ id: request.params.id, user: decodedToken.id });
             yield Outfit_1.Outfit.remove(outfit);
-            response.json({ message: 'Success! Outfit removed from wardrobe.' });
+            response.json({ deleted: true, message: 'Success! Outfit removed from wardrobe.' });
         }
         catch (err) {
             console.log(err);
-            response.status(400).json({ message: 'Failed to remove outfit. Please try again.' });
+            response.status(400).json({ deleted: false, message: 'Failed to remove outfit. Please try again.' });
         }
     });
 }

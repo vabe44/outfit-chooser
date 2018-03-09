@@ -1,3 +1,84 @@
+.wardrobe-item {
+    height: calc(100% - 52px);
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    padding: 10px;
+}
+
 h2  {
     text-align: center;
+}
+
+.model-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.details-container {
+    flex: 1;
+}
+
+.model {
+    width: 33%;
+}
+
+.edit-button {
+    width: 33%;
+}
+
+.edit-button button {
+    color: lightgray;
+    float: right;
+    font-size: 20px;
+    background-color: transparent;
+    border: unset;
+    margin: 5px;
+}
+
+i.fas.active {
+    color: darkslategray;
+}
+
+.delete-button {
+    text-align: right;
+}
+
+.delete-button button {
+    color: lightgray;
+    font-size: 20px;
+    background-color: transparent;
+    border: unset;
+    margin: 5px;
+}
+
+input#nameInput {
+    font-size: 1.5rem;
+    /* line-height: 1rem; */
+    text-align: center;
+    padding: unset;
+}
+
+.save.button {
+    width: 100%;
+}
+
+.view-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.edit-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

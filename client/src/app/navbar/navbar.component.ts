@@ -8,10 +8,15 @@ import { AuthService } from '../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  menuIsActive: boolean;
+
   constructor(public authService: AuthService ) {
   }
 
   ngOnInit() {
   }
 
+  toggleMenu(): void {
+    this.menuIsActive = !this.menuIsActive;
+  }
 }

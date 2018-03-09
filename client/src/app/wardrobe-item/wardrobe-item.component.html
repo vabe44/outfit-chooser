@@ -1,5 +1,56 @@
-<h2 class="title">{{ outfit?.name }}</h2>
+<div class="wardrobe-item">
 
-<!-- <img id="model-image" [src]="modelUrl"> -->
+    <div class="back">
+        <a routerLink="/wardrobe" class="back button is-white">
+            <span class="icon">
+                <i class="fas fa-chevron-left"></i>
+            </span>
+            <span>Wardrobe</span>
+        </a>
+    </div>
 
-<app-business-casual-male-svg *ngIf="outfit" [outfit]="outfit"></app-business-casual-male-svg>
+    <div class="model-container">
+        <div class="model">
+            <app-business-casual-male-svg *ngIf="outfit" [outfit]="outfit"></app-business-casual-male-svg>
+        </div>
+        <div class="edit-button">
+            <button (click)="toggleEditMode()">
+                <i class="fas fa-cog" [class.active]="editMode"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="details">
+        <div class="details-container">
+
+            <div *ngIf="!editMode" class="view-container">
+                <h2 class="title">{{ outfit?.name }}</h2>
+
+                <div class="delete-button">
+                    <button (click)="deleteOutfit()">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div *ngIf="editMode" class="edit-container">
+                <div class="field">
+                    <div class="control is-expanded">
+                        <input id="nameInput" class="input" type="text" placeholder="Name of the outfit" [(ngModel)]="outfit.name" value="{{ outfit?.name }}">
+                    </div>
+                </div>
+
+                <a class="save button is-success">
+                    <span class="icon is-small">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <span>Save</span>
+                </a>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>

@@ -52,9 +52,9 @@ export async function remove(request: Request, response: Response) {
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
         const outfit = await Outfit.find({ id: request.params.id, user: decodedToken.id });
         await Outfit.remove(outfit);
-        response.json({ message: 'Success! Outfit removed from wardrobe.'});
+        response.json({ deleted: true, message: 'Success! Outfit removed from wardrobe.'});
     } catch(err) {
         console.log(err);
-        response.status(400).json({ message: 'Failed to remove outfit. Please try again.' });
+        response.status(400).json({ deleted: false, message: 'Failed to remove outfit. Please try again.' });
     }
 }
