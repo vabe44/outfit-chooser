@@ -25,6 +25,21 @@ function get(request, response) {
     });
 }
 exports.get = get;
+function getOne(request, response) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const token = request.headers.authorization.toString().replace('Bearer ', '');
+            const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+            const outfit = yield Outfit_1.Outfit.findOne({ user: decodedToken.id, id: request.params.id });
+            response.json(outfit);
+        }
+        catch (err) {
+            console.log(err);
+            response.status(400).json({ message: 'Failed to get outfit. Please try again.' });
+        }
+    });
+}
+exports.getOne = getOne;
 function post(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         try {

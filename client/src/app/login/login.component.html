@@ -1,38 +1,38 @@
-<!-- <form class="form-signin" #f="ngForm" (ngSubmit)="signIn(f.value)">
-  <h2 class="form-signin-heading">Please sign in</h2>
-  <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username and/or password.</div>
-  <label for="inputEmail" class="sr-only">Email address</label>
-  <input type="email" id="inputEmail" name="email" ngModel class="form-control" placeholder="Email address" required autofocus>
-  <label for="inputPassword" class="sr-only">Password</label>
-  <input type="password" id="inputPassword" name="password" ngModel class="form-control" placeholder="Password" required>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-</form> -->
+<div *ngIf="!invalidLogin" class="notification is-danger">
+  <button class="delete"></button>
+  Invalid email and/or password.
+</div>
+
+<h1 class="title">Login</h1>
+<h2 class="subtitle">Please enter your details</h2>
 
 <form class="form-signin" #f="ngForm" (ngSubmit)="signIn(f.value)">
-    <div class="field">
-        <p class="control has-icons-left has-icons-right">
-          <input class="input" type="email" id="inputEmail" name="email" ngModel placeholder="Email address" required autofocus>
-          <span class="icon is-small is-left">
-            <i class="fas fa-envelope"></i>
-          </span>
-          <span class="icon is-small is-right">
-            <i class="fas fa-check"></i>
-          </span>
-        </p>
-      </div>
-      <div class="field">
-        <p class="control has-icons-left">
-          <input class="input" type="password" id="inputPassword" name="password" ngModel placeholder="Password" required>
-          <span class="icon is-small is-left">
-            <i class="fas fa-lock"></i>
-          </span>
-        </p>
-      </div>
-      <div class="field">
-        <p class="control">
-          <button class="button is-success">
-            Login
-          </button>
-        </p>
-      </div>
+  <div class="field">
+    <label for="inputEmail">Email address</label>
+    <p class="control has-icons-left has-icons-right">
+      <input class="input" type="email" id="inputEmail" name="email" ngModel placeholder="Email address" required autofocus>
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fas fa-check"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <label for="inputPassword">Password</label>
+    <p class="control has-icons-left">
+      <input class="input" type="password" id="inputPassword" name="password" ngModel placeholder="Password" required>
+      <span class="icon is-small is-left">
+        <i class="fas fa-lock"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control">
+      <button class="button is-success" style="width:100%;">
+        Login
+      </button>
+    </p>
+  </div>
 </form>

@@ -1,0 +1,21 @@
+.navbar {
+    display: flex;
+}
+
+.navbar-start, .navbar-end {
+    display: flex;
+}
+
+/* .navbar-end {
+    flex: 1;
+    justify-content: flex-end;
+} */
+
+.dropdown-trigger {
+    display: flex;
+    align-items: center;
+}
+
+a.home.navbar-item:hover {
+    background-color: transparent;
+}

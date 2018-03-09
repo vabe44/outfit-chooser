@@ -14,6 +14,18 @@ export async function get(request: Request, response: Response) {
     }
 }
 
+export async function getOne(request: Request, response: Response) {
+    try {
+        const token = request.headers.authorization.toString().replace('Bearer ', '');
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        const outfit = await Outfit.findOne({ user: decodedToken.id, id: request.params.id });
+        response.json(outfit);
+    } catch(err) {
+        console.log(err);
+        response.status(400).json({ message: 'Failed to get outfit. Please try again.' });
+    }
+}
+
 export async function post(request: Request, response: Response) {
     try {
         const token = request.headers.authorization.toString().replace('Bearer ', '');

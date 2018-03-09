@@ -20,6 +20,9 @@ import { SignupComponent } from './signup/signup.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 import { WardrobeComponent } from './wardrobe/wardrobe.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { WardrobeItemComponent } from './wardrobe-item/wardrobe-item.component';
+import { BusinessCasualMaleSvgComponent } from './business-casual-male-svg/business-casual-male-svg.component';
 
 export function getAuthHttp(http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -35,7 +38,10 @@ export function getAuthHttp(http, options: RequestOptions) {
     HomeComponent,
     NotFoundComponent,
     NoAccessComponent,
-    WardrobeComponent
+    WardrobeComponent,
+    NavbarComponent,
+    WardrobeItemComponent,
+    BusinessCasualMaleSvgComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +50,7 @@ export function getAuthHttp(http, options: RequestOptions) {
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'wardrobe', component: WardrobeComponent, canActivate: [AuthGuard] },
+      { path: 'wardrobe/:outfitId', component: WardrobeItemComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: SignupComponent },
       { path: 'no-access', component: NoAccessComponent },

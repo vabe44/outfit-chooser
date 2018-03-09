@@ -14,6 +14,11 @@ export class WardrobeService {
       .map(response => response.json());
   }
 
+  getOutfit(id) {
+    return this.authHttp.get(environment.apiUrl + '/api/wardrobe/' + id)
+      .map(response => response.json());
+  }
+
   saveOutfit(outfit) {
     return this.authHttp.post(environment.apiUrl + '/api/wardrobe', outfit)
       .map(response => response.json());

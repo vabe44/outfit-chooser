@@ -1,36 +1,69 @@
-<h1>Wardrobe</h1>
-<a routerLink="/">Home</a>
-<h2>Outfits</h2>
-<ul>
-  <li *ngFor="let outfit of outfits" (click)="showOutfit(outfit)" [class.selected]="outfit === selectedOutfit">{{ outfit.name }}</li>
-</ul>
+<div class="wardrobe">
 
-<div class="outfit" *ngIf="outfits.length">
-  <h3> {{ selectedOutfit.name }} </h3>
-  <div class="mannequin">
-    <div class="container">
-      <div class="shirt-container">
-        <div class="left">&nbsp;</div>
-        <div class="shirt" [style.background-color]="selectedOutfit.shirt.colorcode">&nbsp;</div>
-        <div class="right">&nbsp;</div>
-      </div>
-      <div class="pants-container">
-        <div class="left">&nbsp;</div>
-        <div class="pants">
-          <div class="leg" [style.background-color]="selectedOutfit.pants.colorcode">&nbsp;</div>
-          <div class="leg" [style.background-color]="selectedOutfit.pants.colorcode">&nbsp;</div>
+  <h2 class="title">Wardrobe</h2>
+
+  <!-- <img id="model-image" [src]="modelUrl" (load)="recolorImage($event)" style="display:none;"> -->
+  <img id="model-image" [src]="modelUrl" style="display:none;">
+  <div id="canvas-container"></div>
+
+  <div class="cards">
+    <div *ngFor="let outfit of outfits" class="card" routerLink="/wardrobe/{{ outfit.id }}">
+      <div class="card-container">
+        <div class="card-image">
+          <figure class="image">
+            <div id="canvas-container{{ outfit.id }}">
+              <!-- <img [src]="modelUrl" (load)="recolorImage(outfit)" id="model{{outfit.id}}" style="display:none;"> -->
+              <!-- <img src="" id="recoloredModel{{outfit.id}}"> -->
+              <app-business-casual-male-svg [outfit]="outfit"></app-business-casual-male-svg>
+            </div>
+          </figure>
         </div>
-        <div class="right">&nbsp;</div>
-      </div>
-      <div class="shoes-container">
-        <div class="left">&nbsp;</div>
-        <div class="shoes">
-          <div class="shoe" [style.background-color]="selectedOutfit.shoes.colorcode">&nbsp;</div>
-          <div class="shoe" [style.background-color]="selectedOutfit.shoes.colorcode">&nbsp;</div>
+        <div class="card-content">
+          <p>{{ outfit.name }}</p>
         </div>
-        <div class="right">&nbsp;</div>
       </div>
     </div>
   </div>
-  <button (click)="deleteOutfit(selectedOutfit)">Delete Outfit</button>
+
+  <!-- <div class="outfit" *ngIf="outfits.length">
+    <h3> {{ selectedOutfit.name }} </h3>
+    <div class="mannequin">
+      <div class="container">
+        <div class="shirt-container">
+          <div class="left">&nbsp;</div>
+          <div class="shirt" [style.background-color]="selectedOutfit.shirt.colorcode">&nbsp;</div>
+          <div class="right">&nbsp;</div>
+        </div>
+        <div class="pants-container">
+          <div class="left">&nbsp;</div>
+          <div class="pants">
+            <div class="leg" [style.background-color]="selectedOutfit.pants.colorcode">&nbsp;</div>
+            <div class="leg" [style.background-color]="selectedOutfit.pants.colorcode">&nbsp;</div>
+          </div>
+          <div class="right">&nbsp;</div>
+        </div>
+        <div class="shoes-container">
+          <div class="left">&nbsp;</div>
+          <div class="shoes">
+            <div class="shoe" [style.background-color]="selectedOutfit.shoes.colorcode">&nbsp;</div>
+            <div class="shoe" [style.background-color]="selectedOutfit.shoes.colorcode">&nbsp;</div>
+          </div>
+          <div class="right">&nbsp;</div>
+        </div>
+      </div>
+    </div>
+    <button (click)="deleteOutfit(selectedOutfit)">Delete Outfit</button>
+  </div> -->
+
+  <div class="select-outfit">
+    <div class="text">
+      <p>Select outfit:</p>
+    </div>
+    <div class="select">
+      <select [(ngModel)]="selectedOutfit" (ngModelChange)="showOutfit($event)">
+        <option *ngFor="let outfit of outfits" [ngValue]="outfit" [class.selected]="outfit === selectedOutfit">{{ outfit.name }}</option>
+      </select>
+    </div>
+  </div>
+
 </div>

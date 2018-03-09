@@ -42,6 +42,11 @@ export const AppRoutes = [
         action: wardrobeController.get
     },
     {
+        path: "/api/wardrobe/:id",
+        method: "get",
+        action: wardrobeController.getOne
+    },
+    {
         path: "/api/wardrobe",
         method: "post",
         action: wardrobeController.post
