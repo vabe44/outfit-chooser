@@ -21,6 +21,6 @@ export async function post(request: Request, response: Response) {
         let token = jwt.sign(payload, process.env.JWT_SECRET);
         response.json({ message: "ok", token: token });
     } else {
-        response.status(401).json({message:"passwords did not match"});
+        response.json({ message:"passwords did not match" });
     }
 }

@@ -37,22 +37,22 @@ export class Home2Component implements OnInit {
   filteredPantsColors: any[] = [];
   filteredShoeColors: any[] = [];
 
-  outfit: any = {
+  outfit: Outfit = {
     id: 0,
     name: '',
     shirt: {
       id: 0,
-      color: 'white',
+      color: '',
       colorcode: '#FFF'
     },
     pants: {
       id: 0,
-      color: 'white',
+      color: '',
       colorcode: '#FFF'
     },
     shoes: {
       id: 0,
-      color: 'white',
+      color: '',
       colorcode: '#FFF'
     }
   };
@@ -328,17 +328,17 @@ export class Home2Component implements OnInit {
       name: '',
       shirt: {
         id: 0,
-        color: 'white',
+        color: '',
         colorcode: '#FFF'
       },
       pants: {
         id: 0,
-        color: 'white',
+        color: '',
         colorcode: '#FFF'
       },
       shoes: {
         id: 0,
-        color: 'white',
+        color: '',
         colorcode: '#FFF'
       }
     };

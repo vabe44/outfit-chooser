@@ -46,6 +46,11 @@ exports.AppRoutes = [
     },
     {
         path: "/api/wardrobe",
+        method: "put",
+        action: wardrobeController.put
+    },
+    {
+        path: "/api/wardrobe",
         method: "post",
         action: wardrobeController.post
     },

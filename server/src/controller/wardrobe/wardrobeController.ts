@@ -26,6 +26,25 @@ export async function getOne(request: Request, response: Response) {
     }
 }
 
+export async function put(request: Request, response: Response) {
+    try {
+        const token = request.headers.authorization.toString().replace('Bearer ', '');
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+
+        const outfit = await Outfit.findOne({ user: decodedToken.id, id: request.body.id });
+        outfit.name = request.body.name;
+        outfit.shirt = request.body.shirt;
+        outfit.pants = request.body.pants;
+        outfit.shoes = request.body.shoes;
+        await outfit.save();
+
+        response.json({ updated: true, message: 'Success! Outfit updated to wardrobe.', outfit: outfit });
+    } catch(err) {
+        console.log(err);
+        response.json({ updated: false, message: 'Failed to update outfit. Please try again.' });
+    }
+}
+
 export async function post(request: Request, response: Response) {
     try {
         const token = request.headers.authorization.toString().replace('Bearer ', '');

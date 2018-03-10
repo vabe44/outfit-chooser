@@ -40,6 +40,26 @@ function getOne(request, response) {
     });
 }
 exports.getOne = getOne;
+function put(request, response) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const token = request.headers.authorization.toString().replace('Bearer ', '');
+            const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+            const outfit = yield Outfit_1.Outfit.findOne({ user: decodedToken.id, id: request.body.id });
+            outfit.name = request.body.name;
+            outfit.shirt = request.body.shirt;
+            outfit.pants = request.body.pants;
+            outfit.shoes = request.body.shoes;
+            yield outfit.save();
+            response.json({ updated: true, message: 'Success! Outfit updated to wardrobe.', outfit: outfit });
+        }
+        catch (err) {
+            console.log(err);
+            response.json({ updated: false, message: 'Failed to update outfit. Please try again.' });
+        }
+    });
+}
+exports.put = put;
 function post(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         try {

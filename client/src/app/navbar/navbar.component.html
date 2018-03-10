@@ -13,10 +13,13 @@
         </a>
 
         <div *ngIf="menuIsActive" class="navbar-dropdown is-right">
+          <!-- <a *ngIf="authService.isLoggedIn()" routerLink="/" (click)="toggleMenu()" class="navbar-item">
+            Create Outfit
+          </a> -->
           <a *ngIf="authService.isLoggedIn()" routerLink="/wardrobe" (click)="toggleMenu()" class="navbar-item">
             My Wardrobe
           </a>
-          <hr class="dropdown-divider">
+          <!-- <hr class="dropdown-divider"> -->
           <a *ngIf="!authService.isLoggedIn()" routerLink="/login" (click)="toggleMenu()" class="navbar-item">
             Log in
           </a>
@@ -24,7 +27,7 @@
             Log out
           </a>
           <a *ngIf="!authService.isLoggedIn()" routerLink="/register" (click)="toggleMenu()" class="navbar-item">
-            Register
+            Sign up
           </a>
         </div>
       </div>

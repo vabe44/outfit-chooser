@@ -1,19 +1,9 @@
+import { Clothing } from './clothing';
+
 export class Outfit {
     id: number;
     name: string;
-    shirt: {
-        id: number,
-        color: string,
-        colorcode: string
-    };
-    pants: {
-        id: number,
-        color: string,
-        colorcode: string
-    }
-    shoes: {
-        id: number,
-        color: string,
-        colorcode: string
-    };
+    shirt: Clothing;
+    pants: Clothing;
+    shoes: Clothing;
 }

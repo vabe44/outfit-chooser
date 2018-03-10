@@ -29,6 +29,12 @@ export class WardrobeItemComponent implements OnInit {
     this.editMode = !this.editMode;
   }
 
+  updateOutfit() {
+    this.wardrobeService.updateOutfit(this.outfit).subscribe(response => {
+      response.updated ? this.editMode = false : alert(response.message);
+    });
+  }
+
   deleteOutfit() {
     const shouldDelete = confirm('Are you sure you want to delete this outfit?');
     if (!shouldDelete) { return; }

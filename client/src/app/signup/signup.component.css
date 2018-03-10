@@ -1,0 +1,21 @@
+.signup {
+    min-height: calc(100% - 52px);
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    padding: 10px;
+}
+
+.title {
+    text-align: center;
+}
+
+form.form-signup {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.inputs {
+    flex: 1;
+}

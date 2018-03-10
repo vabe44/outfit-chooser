@@ -4,16 +4,15 @@
 
   <div class="cards">
     <div *ngFor="let outfit of outfits" class="card" routerLink="/wardrobe/{{ outfit.id }}">
+      <div class="card-content">
+        <p>{{ outfit.name }}</p>
+      </div>
       <div class="card-image">
         <figure class="image">
           <div id="canvas-container{{ outfit.id }}">
             <app-business-casual-male-svg [outfit]="outfit"></app-business-casual-male-svg>
           </div>
         </figure>
-      </div>
-      <div class="card-content">
-        <p>{{ outfit.name }}</p>
-        <!-- <button (click)="deleteOutfit(outfit)">Delete Outfit</button> -->
       </div>
     </div>
   </div>

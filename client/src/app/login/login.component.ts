@@ -18,12 +18,17 @@ export class LoginComponent {
   signIn(credentials) {
     this.authService.login(credentials)
       .subscribe(result => {
+        console.log(result);
         if (result) {
           const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-          this.router.navigate([returnUrl || '/']);
+          this.router.navigate([returnUrl || '/home']);
         } else  {
           this.invalidLogin = true;
         }
       });
+  }
+
+  hideError(): void {
+    this.invalidLogin = false;
   }
 }

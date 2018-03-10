@@ -28,7 +28,7 @@ function post(request, response) {
             response.json({ message: "ok", token: token });
         }
         else {
-            response.status(401).json({ message: "passwords did not match" });
+            response.json({ message: "passwords did not match" });
         }
     });
 }

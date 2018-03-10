@@ -3,12 +3,13 @@ import { Http } from '@angular/http';
 import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
   currentUser: any;
 
-  constructor(private http: Http) {
+  constructor(private router: Router, private http: Http) {
     const token = localStorage.getItem('token');
     if (token) {
       const jwt = new JwtHelper();
@@ -35,6 +36,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     this.currentUser = null;
+    this.router.navigate(['/']);
   }
 
   isLoggedIn() {
