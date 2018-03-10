@@ -22,7 +22,6 @@ export class WardrobeItemComponent implements OnInit {
     this.wardrobeService.getOutfit(this.route.snapshot.params.outfitId)
     .subscribe(outfit => {
       this.outfit = outfit;
-      console.log(this.outfit);
     });
   }
 
@@ -30,11 +29,11 @@ export class WardrobeItemComponent implements OnInit {
     this.editMode = !this.editMode;
   }
 
-  deleteOutfit(outfit) {
+  deleteOutfit() {
     const shouldDelete = confirm('Are you sure you want to delete this outfit?');
     if (!shouldDelete) { return; }
-    console.log('OK, deleting outfit!', outfit);
-    this.wardrobeService.deleteOutfit(outfit)
+    console.log('OK, deleting outfit!', this.outfit);
+    this.wardrobeService.deleteOutfit(this.outfit)
       .subscribe(response => {
         response.deleted ? this.router.navigate(['/wardrobe']) : alert(response.message);
       });

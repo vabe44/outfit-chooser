@@ -39,10 +39,10 @@ export async function post(request: Request, response: Response) {
         outfit.name = request.body.name;
         await outfit.save();
 
-        response.status(201).json({ message: 'Success! Outfit saved to wardrobe.', outfit: outfit });
+        response.status(201).json({ saved: true, message: 'Success! Outfit saved to wardrobe.', outfit: outfit });
     } catch(err) {
         console.log(err);
-        response.status(400).json({ message: 'Failed to save outfit. Please try again.' });
+        response.status(400).json({ saved: false, message: 'Failed to save outfit. Please try again.' });
     }
 }
 

@@ -1,3 +1,4 @@
+import { Outfit } from './../classes/outfit';
 import { IOutfit } from './../interface/Outfit';
 import { WardrobeService } from './../services/wardrobe.service';
 import { Component } from '@angular/core';
@@ -5,16 +6,14 @@ import { Http } from '@angular/http';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { ClothesService } from './../services/clothes.service';
 import { AuthService } from './../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-home2',
+  templateUrl: './home2.component.html',
+  styleUrls: ['./home2.component.css']
 })
-export class HomeComponent implements OnInit {
-  title = 'Outfit Chooser';
-
-  debug = false;
+export class Home2Component implements OnInit {
 
   skinTones: any[] = [];
   shirtColors: any[] = [];
@@ -38,9 +37,28 @@ export class HomeComponent implements OnInit {
   filteredPantsColors: any[] = [];
   filteredShoeColors: any[] = [];
 
-  currentOutfit: any = {};
+  outfit: any = {
+    id: 0,
+    name: '',
+    shirt: {
+      id: 0,
+      color: 'white',
+      colorcode: '#FFF'
+    },
+    pants: {
+      id: 0,
+      color: 'white',
+      colorcode: '#FFF'
+    },
+    shoes: {
+      id: 0,
+      color: 'white',
+      colorcode: '#FFF'
+    }
+  };
 
   constructor(
+    private router: Router,
     private service: ClothesService,
     public authService: AuthService,
     private wardrobeService: WardrobeService
@@ -137,7 +155,7 @@ export class HomeComponent implements OnInit {
 
   selectShirtColor(shirtColor) {
     this.selectedShirtColor = shirtColor;
-    this.currentOutfit.shirt = this.selectedShirtColor;
+    this.outfit.shirt = this.selectedShirtColor;
 
     console.log(this.selectedShirtColor);
 
@@ -178,6 +196,7 @@ export class HomeComponent implements OnInit {
 
   selectPantsColor(pantsColor) {
     this.selectedPantsColor = pantsColor;
+    this.outfit.pants = this.selectedPantsColor;
 
     console.log(this.selectedPantsColor);
 
@@ -210,6 +229,7 @@ export class HomeComponent implements OnInit {
 
   selectShoeColor(shoeColor) {
     this.selectedShoeColor = shoeColor;
+    this.outfit.shoes = this.selectedShoeColor;
 
     console.log(this.selectedShoeColor);
 
@@ -302,6 +322,26 @@ export class HomeComponent implements OnInit {
     this.filteredShirtColors = Array.from(this.shirtColors);
     this.filteredPantsColors = Array.from(this.pantsColors);
     this.filteredShoeColors = Array.from(this.shoeColors);
+
+    this.outfit = {
+      id: 0,
+      name: '',
+      shirt: {
+        id: 0,
+        color: 'white',
+        colorcode: '#FFF'
+      },
+      pants: {
+        id: 0,
+        color: 'white',
+        colorcode: '#FFF'
+      },
+      shoes: {
+        id: 0,
+        color: 'white',
+        colorcode: '#FFF'
+      }
+    };
   }
 
   resetSkinTone() {
@@ -347,7 +387,7 @@ export class HomeComponent implements OnInit {
       name: name || 'N/A'
     };
     this.wardrobeService.saveOutfit(outfit).subscribe(response => {
-      alert(response.message);
+      response.saved ? this.router.navigate(['/wardrobe/' + response.outfit.id]) : alert(response.message);
     });
   }
 }

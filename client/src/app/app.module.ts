@@ -23,6 +23,7 @@ import { WardrobeComponent } from './wardrobe/wardrobe.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { WardrobeItemComponent } from './wardrobe-item/wardrobe-item.component';
 import { BusinessCasualMaleSvgComponent } from './business-casual-male-svg/business-casual-male-svg.component';
+import { Home2Component } from './home2/home2.component';
 
 export function getAuthHttp(http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -41,14 +42,16 @@ export function getAuthHttp(http, options: RequestOptions) {
     WardrobeComponent,
     NavbarComponent,
     WardrobeItemComponent,
-    BusinessCasualMaleSvgComponent
+    BusinessCasualMaleSvgComponent,
+    Home2Component
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: Home2Component },
+      { path: 'home2', component: HomeComponent },
       { path: 'wardrobe', component: WardrobeComponent, canActivate: [AuthGuard] },
       { path: 'wardrobe/:outfitId', component: WardrobeItemComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
