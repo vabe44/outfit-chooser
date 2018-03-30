@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve --no-delete-output-path",
     "serve": "ng serve --no-delete-output-path",
-    "build": "ng build --prod --env=prod",
+    "build": "ng build --prod --env=prod --aot",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

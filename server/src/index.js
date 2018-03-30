@@ -30,7 +30,7 @@ typeorm_1.createConnection().then((connection) => __awaiter(this, void 0, void 0
         extended: true
     }));
     app.use(bodyParser.json());
-    app.use(express.static(path.join(__dirname, '../../' + process.env.CLIENT_PATH)));
+    app.use(express.static(path.join(__dirname, '../', process.env.CLIENT_PATH)));
     const corsOptions = {
         origin: process.env.CLIENT_URL_FOR_CORS,
         credentials: true,
@@ -44,6 +44,9 @@ typeorm_1.createConnection().then((connection) => __awaiter(this, void 0, void 0
                 .then(() => next)
                 .catch(err => next(err));
         });
+    });
+    app.get('*', function (req, res) {
+        res.sendfile('./' + process.env.CLIENT_PATH + '/index.html');
     });
     // run app
     app.listen(process.env.PORT);
