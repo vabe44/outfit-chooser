@@ -1,6 +1,7 @@
 import {Index,Entity, PrimaryColumn, Column, OneToOne, OneToMany, ManyToOne, JoinColumn} from "typeorm";
 import {PantsColor} from "./PantsColor";
 import {ShoeColor} from "./ShoeColor";
+import {Color} from "./Colors";
 
 
 @Entity("pant_shoe")
@@ -16,6 +17,12 @@ export class PantsShoes {
         })
     id:number;
 
+    // @ManyToOne(type=>Color, pant_color_id=>pant_color_id.pant_shoes, {
+    //     eager: true
+    // })
+    // @JoinColumn({ name:'pant_color_id'})
+    // pant_color_id:Color;
+
     @ManyToOne(type=>PantsColor, pant_color_id=>pant_color_id.pant_shoes, {
         eager: true
     })
@@ -28,4 +35,9 @@ export class PantsShoes {
     @JoinColumn({ name:'shoe_color_id'})
     shoe_color_id:ShoeColor;
 
+    // @ManyToOne(type=>Color, shoe_color_id=>shoe_color_id.pant_shoes, {
+    //     eager: true
+    // })
+    // @JoinColumn({ name:'shoe_color_id'})
+    // shoe_color_id:Color;
 }

@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const User_1 = require("../../entity/User");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 function post(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         console.log(request.body);
@@ -17,7 +18,8 @@ function post(request, response) {
         if (!user) {
             response.status(401).json({ message: "no such user found" });
         }
-        if (user.password === request.body.password) {
+        const match = yield bcrypt.compare(request.body.password, user.password);
+        if (match) {
             // from now on we'll identify the user by the id and the id is the only personalized value that goes into our token
             let payload = {
                 id: user.id,

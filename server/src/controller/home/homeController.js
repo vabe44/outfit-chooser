@@ -14,7 +14,7 @@ const path = require("path");
  */
 function homeController(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
-        response.sendFile(path.join(__dirname, '../../../../', process.env.CLIENT_PATH, '/index.html'));
+        response.sendFile(path.join(__dirname, '../../../', process.env.CLIENT_PATH, '/index.html'));
     });
 }
 exports.homeController = homeController;

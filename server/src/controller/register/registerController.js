@@ -10,12 +10,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const User_1 = require("../../entity/User");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 function post(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         const user = new User_1.User();
         user.username = request.body.username;
         user.email = request.body.email;
-        user.password = request.body.password;
+        user.password = yield bcrypt.hash(request.body.password, 10);
         yield user.save();
         if (user.id) {
             let payload = {
