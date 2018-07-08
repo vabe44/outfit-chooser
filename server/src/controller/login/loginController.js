@@ -13,7 +13,6 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 function post(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log(request.body);
         const user = yield User_1.User.findOne({ email: request.body.email });
         if (!user) {
             response.status(401).json({ message: "no such user found" });
